@@ -1,0 +1,65 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class Main451B
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int[] a=new int[n];
+    int[] b=new int[n];
+    for(int i=0;i<n;i++)
+    {
+      a[i]=sc.nextInt();
+      b[i]=a[i];
+    }
+    Arrays.sort(b);
+    int lo=0;
+    for(int i=0;i<n;i++)
+    {
+      if(a[i]!=b[i]){
+        lo=i;
+        break;
+      }
+    }
+    int ro=0;
+    for(int i=n-1;i>=0;i--)
+    {
+      if(a[i]!=b[i])
+      {
+        ro=i;
+        break;
+      }
+    }
+    if(lo==ro)
+    {
+      System.out.println("yes");
+      System.out.println((lo+1)+" "+(ro+1));
+    }
+    else{
+    boolean flag=true;
+    //int i=lo;
+    //System.out.println(lo+" "+ro);
+    for(int i=0;i<=(ro-lo);i++)
+    {
+     
+      if(a[lo+i]!=b[ro-i])
+      {
+        //System.out.println(a[lo+i]+" "+b[ro-i]);
+        flag=false;
+        break;
+      }
+    }
+    if(flag)
+    {
+      System.out.println("yes");
+      System.out.print((lo+1)+" "+(ro+1));
+    }
+    else
+    {
+      System.out.println("no");
+    }
+  }
+  }
+}
+        

@@ -1,0 +1,33 @@
+import java.util.Scanner;
+public class Main469A
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    boolean[] a=new boolean[n+1];
+    int p=sc.nextInt();
+    for(int i=0;i<p;i++)
+    {
+      int v=sc.nextInt();
+      a[v]=true;
+    }
+    int q=sc.nextInt();
+    for(int i=0;i<q;i++)
+    {
+      int w=sc.nextInt();
+      a[w]=true;
+    }
+    boolean flag=true;
+    for(int i=1;i<=n;i++)
+    {
+      if(!a[i]){
+        flag=false;
+        break;
+      }
+    }
+    if(flag) System.out.println("I become the guy.");
+    else System.out.println("Oh, my keyboard!");
+  }
+}
+      

@@ -1,0 +1,10 @@
+import java.math.BigInteger;
+public class EULER16
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    BigInteger f=new BigInteger("2");
+    System.out.prinlnt(f.pow(100));
+  }
+}

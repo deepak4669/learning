@@ -1,0 +1,19 @@
+import java.util.Scanner;
+public class COINS
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=10;
+    while(t>0)
+    {
+      int n=sc.nextInt();
+      int a=n/2;
+      int b=n/3;
+      int c=n/4;
+      if((a+b+c)>n) System.out.println(a+b+c);
+      else System.out.println(n);
+      t-=1;
+    }
+  }
+}

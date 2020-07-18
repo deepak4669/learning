@@ -1,0 +1,32 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.*;
+import java.util.StringTokenizer;
+//import java.BigInteger;
+public class AP23
+{
+  public static void main(String[] args) throws IOException
+  {
+    BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+    int t=Integer.parseInt(br.readLine());
+    while(t-->0)
+    {
+      StringTokenizer tk=new StringTokenizer(br.readLine());
+      long a=Long.parseLong(tk.nextToken());
+      long b=Long.parseLong(tk.nextToken());
+      long c=Long.parseLong(tk.nextToken());
+      long n=(2*c)/(a+b);
+      long d=(b-a)/(n-5);
+      long a1=a-2*d;
+      System.out.println(n);
+      for(int i=0;i<n;i++)
+      {
+        System.out.print(a1+i*d+" ");
+        
+      }
+      //System.out.println();
+      
+    }
+  }
+}
+   

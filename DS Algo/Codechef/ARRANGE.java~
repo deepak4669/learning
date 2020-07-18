@@ -1,0 +1,51 @@
+import java.util.Scanner;
+public class ARRANGE{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      int[] a=new int[n];
+      for(int i=0;i<n;i++)
+      {
+        a[i]=sc.nextInt();
+      }
+      Arrays.sort(a);
+      int[] b=new int[n];
+      int k=n;
+      int result1=1;
+      int result2=1;
+      
+      for(int i=0;i<n;i++)
+      {
+        b[i]=a[--k];
+        result1=Math.pow(result1,a[i]);
+        result2=Math.pow(result2,b[i]);                                 
+      }
+      if(result1>result2)
+      {
+        for(int i=0;i<n;i++)
+          System.out.print(a[i]+" ");
+        System.out.println();
+        
+      }
+      else if(result1<result2)
+      {
+        for(int i=0;i<n;i++)
+          System.out.print(b[i]+" ");
+        System.out.println();
+        
+      }
+      else
+      {
+        for(int i=0;i<n;i++)
+          System.out.println(a[i]+" ");
+        System.out.println();
+      }
+    }
+  }
+}
+        
+        

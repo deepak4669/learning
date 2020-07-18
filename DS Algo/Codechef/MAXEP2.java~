@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class MAXEP2
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new SCanner(System.in);
+    int n=sc.nextInt();
+    int c=sc.nextInt();
+    int coins=1000;
+    int hi=n;
+    int lo=1;
+    while(hi>lo&&coins>1)
+    {
+      int m1=l+(r-l)/3;
+      int m2=r-(r-l)/3;
+      out.println(1+" "+m1);
+      out.flush();
+      int a=sc.nextInt();
+      
+      out.println(1+" "+m2);
+      out.flush();
+      int b=sc.nextInt();
+      if(a==0&&b==1)
+        lo=m1+1;
+      else 
+        hi=m2;
+    }
+    out.println(lo);
+    out.flush();
+  }
+}
+      
+        
+        
+      

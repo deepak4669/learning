@@ -1,0 +1,39 @@
+import java.util.Scanner;
+public class Main441
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    while(true)
+    {
+      int n=sc.nextInt();
+      if(n==0)
+        break;
+      int[] a=new int[n];
+      for(int i=0;i<n;i++)
+      {
+        a[i]=sc.nextInt();
+      }
+      for(int i=0;i<n-5;i++)
+      {
+        for(int j=0;j<n-4;j++)
+        {
+          for(int k=0;k<n-3;k++)
+          {
+            for(int l=0;l<n-2;l++)
+            {
+              for(int m=0;m<n-1;m++)
+              {
+                for(int p=m+1;p<n;p++)
+                {
+                  System.out.println(a[i]+" "+a[j]+" "+a[k]+" "+a[l]+" "+a[m]+" "+a[p]);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+                        

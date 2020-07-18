@@ -1,0 +1,170 @@
+import java.util.*;
+import java.io.*;
+
+class Main448B
+{
+  static PrintWriter out=new PrintWriter(System.out);
+  
+  public static void main(String[] args) throws IOException
+  {
+    Scanner sc=new Scanner(System.in);
+    String s=sc.next();
+    String t=sc.next();
+    if(t.length()>s.length())
+      out.println("need tree");
+    else if(t.length()==s.length())
+    {
+      char[] s_arr=s.toCharArray();
+      char[] t_arr=t.toCharArray();
+      Arrays.sort(s_arr);
+      Arrays.sort(t_arr);
+      s=new String(s_arr);
+      t=new String(t_arr);
+      if(s.equals(t))
+        out.println("array");
+      else
+        out.println("need tree");
+    }
+    else
+    {
+      int k=-1;
+      String dup="";
+      boolean flag2=true;
+      for(int i=0;i<t.length();i++)
+      {
+        boolean flag=false;
+        for(int j=k+1;j<s.length();j++)
+        {
+          if(t.charAt(i)==s.charAt(j))
+          {
+            dup+=t.charAt(i);
+            k=j;
+            flag=true;
+            break;
+          }
+        }
+        if(!flag)
+        {
+          flag2=false;
+          break;
+        }
+      }
+      //out.println(dup);
+      //out.println(
+      if(flag2)
+        out.println("automaton");
+      else
+      {
+        HashMap<Character,Integer> map=new HashMap<Character,Integer>();
+        for(int i=0;i<s.length();i++)
+        {
+          if(map.containsKey(s.charAt(i)))
+            map.put(s.charAt(i),map.get(s.charAt(i))+1);
+          else
+            map.put(s.charAt(i),1);
+        }
+        boolean flag=true;
+        for(int i=0;i<t.length();i++)
+        {
+          if(!map.containsKey(t.charAt(i))||map.get(t.charAt(i))==0)
+          {
+            flag=false;
+            break;
+          }
+          else if(map.containsKey(t.charAt(i)))          
+          {
+            map.put(t.charAt(i),map.get(t.charAt(i))-1);
+          }
+        }
+        if(!flag)
+          out.println("need tree");
+        else
+          out.println("both");
+            
+      }
+    }
+            
+    out.flush();
+        
+        
+    
+  }
+  static class Scanner
+  {
+    BufferedReader br;
+    StringTokenizer tk=new StringTokenizer("");
+    public Scanner(InputStream is) 
+        {
+      br=new BufferedReader(new InputStreamReader(is));
+    }
+        public int nextInt() throws IOException
+        {
+          if(tk.hasMoreTokens())
+                return Integer.parseInt(tk.nextToken());
+          tk=new StringTokenizer(br.readLine());
+          return nextInt();
+        }
+        public long nextLong() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return Long.parseLong(tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return nextLong();
+        }
+        public String next() throws IOException
+        {
+          if(tk.hasMoreTokens())
+            return (tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return next();
+        }
+        public String nextLine() throws IOException
+        {
+          tk=new StringTokenizer("");
+          return br.readLine();
+        }
+        public double nextDouble() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return Double.parseDouble(tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return nextDouble();
+        }
+        public char nextChar() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return (tk.nextToken().charAt(0));
+            tk=new StringTokenizer(br.readLine());
+            return nextChar();
+        }
+        public int[] nextIntArray(int n) throws IOException
+        {
+            int a[]=new int[n];
+            for(int i=0;i<n;i++)
+              a[i]=nextInt();
+            return a;
+        }
+        public long[] nextLongArray(int n) throws IOException
+        {
+          long a[]=new long[n];
+            for(int i=0;i<n;i++)
+              a[i]=nextLong();
+            return a;
+        }
+        public int[] nextIntArrayOneBased(int n) throws IOException
+        {
+          int a[]=new int[n+1];
+            for(int i=1;i<=n;i++)
+              a[i]=nextInt();
+            return a;
+        }
+        public long[] nextLongArrayOneBased(int n) throws IOException
+        {
+          long a[]=new long[n+1];
+          for(int i=1;i<=n;i++)
+                a[i]=nextLong();
+          return a;
+        }
+  }
+}
+

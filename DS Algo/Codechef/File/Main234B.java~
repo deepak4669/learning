@@ -1,0 +1,37 @@
+import java.util.*;
+import java.io.*;
+
+public class Main234B
+{
+  public static void main(String[] args)
+  {
+    File in=new File("input.txt");
+    Writer wr=new FileWriter("output.txt");
+    Scanner sc=new Scanner(in);
+    int n=sc.nextInt();
+    int k=sc.nextInt();
+    int[] a=new int[n];
+    for(int i=0;i<n;i++)
+      a[i]=sc.nextInt();
+    int[] ans=new int[k];
+    for(int i=0;i<k;i++)      
+    {
+      int max=i;
+      for(int j=i;j<n;j++)
+      {
+        if(a[j]>a[max])
+          max=j;
+      }
+      ans[i]=max;
+    }
+    wr.write(a[ans[k-1]]);
+    wr.write(System.getProperty("line.separator"));
+    for(int i=0;i<k;i++)
+      wr.write(a[i]+" ");
+    wr.flush();
+    wr.close();
+  }
+}
+      
+                                         
+  

@@ -1,0 +1,224 @@
+import java.util.*;
+import java.io.*;
+
+public class Main287A
+{
+  static PrintWriter out=new PrintWriter(System.out);
+  static String[] s;
+  
+  static boolean equal(char a,char b,char c,char d)
+  {
+    return a==b&&b==c&&c==d&&d==a;
+  }
+  
+  static boolean check()    
+  {
+    for(int i=0;i<4;i++)
+    {
+      for(int j=0;j<4;j++)
+      {
+        
+        if(j==0)
+        {
+          if(i==0)
+          {
+            if(equal(s[i].charAt(j),s[i].charAt(j+1),s[i+1].charAt(j),s[i+1].charAt(j+1)))
+              return true;
+          }
+          else if(i==3)
+          {
+            if(equal(s[i].charAt(j),s[i-1].charAt(j),s[i-1].charAt(j+1),s[i].charAt(j+1)))
+              return true;
+          }
+          else
+          {
+            if(equal(s[i].charAt(j),s[i+1].charAt(j),s[i].charAt(j+1),s[i+1].charAt(j+1))||equal(s[i].charAt(j),s[i-1].charAt(j),s[i-1].charAt(j+1),s[i].charAt(j+1)))
+              return true;
+          }
+        }
+        else if(j==3)
+        {
+          if(i==0)
+          {
+            if(equal(s[i].charAt(j),s[i].charAt(j-1),s[i+1].charAt(j),s[i+1].charAt(j-1)))
+              return true;
+          }
+          else if(i==3)
+          {
+            if(equal(s[i].charAt(j),s[i-1].charAt(j),s[i-1].charAt(j-1),s[i].charAt(j-1)))
+              return true;
+          }
+          else
+          {
+            if(equal(s[i].charAt(j),s[i+1].charAt(j),s[i].charAt(j-1),s[i+1].charAt(j-1))||equal(s[i].charAt(j),s[i-1].charAt(j),s[i-1].charAt(j-1),s[i].charAt(j-1)))
+              return true;
+          }
+        }
+        else if(i==0)
+        {
+          if(equal(s[i].charAt(j),s[i].charAt(j-1),s[i+1].charAt(j-1),s[i+1].charAt(j))||equal(s[i].charAt(j),s[i].charAt(j+1),s[i+1].charAt(j+1),s[i+1].charAt(j)))
+            return true;
+        }
+        else if(i==3)
+        {
+          if(equal(s[i].charAt(j),s[i].charAt(j-1),s[i-1].charAt(j-1),s[i-1].charAt(j))||equal(s[i].charAt(j),s[i].charAt(j+1),s[i-1].charAt(j+1),s[i-1].charAt(j)))
+            return true;
+        }
+        else
+        {
+          char a=s[i].charAt(j);
+          char b=s[i].charAt(j-1);
+          char c=s[i-1].charAt(j-1);
+          char d=s[i-1].charAt(j);
+          if(equal(a,b,c,d))
+            return true;
+          c=s[i+1].charAt(j-1);
+          d=s[i+1].charAt(j);
+          if(equal(a,b,c,d))
+            return true;
+          c=s[i+1].charAt(j+1);
+          b=s[i].charAt(j+1);
+          if(equal(a,b,c,d))
+            return true;
+          c=s[i-1].charAt(j+1);
+          d=s[i-1].charAt(j);
+          if(equal(a,b,c,d))
+            return true;
+        }
+      }
+    }
+      return false;
+  }
+              
+            
+          
+            
+              
+              
+    
+  
+  public static void main(String[] args) throws IOException
+  {
+    s=new String[4];
+    
+    Scanner sc=new Scanner(System.in);
+    for(int i=0;i<4;i++)
+    {
+      s[i]=sc.next();
+    }
+    if(check())
+      out.println("YES");
+    else
+    {
+      boolean flag=false;
+      for(int i=0;i<4;i++)
+      {
+        for(int j=0;j<4;j++)
+        {
+          if(s[i].charAt(j)=='.')
+            s[i]=s[i].substring(0,j)+'#'+s[i].substring(j+1,s[i].length());
+          else
+            s[i]=s[i].substring(0,j)+'.'+s[i].substring(j+1,s[i].length());
+          if(check())
+          {
+            
+            flag=true;
+            break;
+          }
+          if(s[i].charAt(j)=='.')
+            s[i]=s[i].substring(0,j)+'#'+s[i].substring(j+1,s[i].length());
+          else
+            s[i]=s[i].substring(0,j)+'.'+s[i].substring(j+1,s[i].length());
+        }
+        if(flag)
+          break;
+      }
+      if(flag)
+        out.println("YES");
+      else
+        out.println("NO");
+    }
+    out.flush();
+          
+    
+    
+  }
+  static class Scanner
+  {
+    BufferedReader br;
+    StringTokenizer tk=new StringTokenizer("");
+    public Scanner(InputStream is) 
+        {
+      br=new BufferedReader(new InputStreamReader(is));
+    }
+        public int nextInt() throws IOException
+        {
+          if(tk.hasMoreTokens())
+                return Integer.parseInt(tk.nextToken());
+          tk=new StringTokenizer(br.readLine());
+          return nextInt();
+        }
+        public long nextLong() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return Long.parseLong(tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return nextLong();
+        }
+        public String next() throws IOException
+        {
+          if(tk.hasMoreTokens())
+            return (tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return next();
+        }
+        public String nextLine() throws IOException
+        {
+          tk=new StringTokenizer("");
+          return br.readLine();
+        }
+        public double nextDouble() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return Double.parseDouble(tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return nextDouble();
+        }
+        public char nextChar() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return (tk.nextToken().charAt(0));
+            tk=new StringTokenizer(br.readLine());
+            return nextChar();
+        }
+        public int[] nextIntArray(int n) throws IOException
+        {
+            int a[]=new int[n];
+            for(int i=0;i<n;i++)
+              a[i]=nextInt();
+            return a;
+        }
+        public long[] nextLongArray(int n) throws IOException
+        {
+          long a[]=new long[n];
+            for(int i=0;i<n;i++)
+              a[i]=nextLong();
+            return a;
+        }
+        public int[] nextIntArrayOneBased(int n) throws IOException
+        {
+          int a[]=new int[n+1];
+            for(int i=1;i<=n;i++)
+              a[i]=nextInt();
+            return a;
+        }
+        public long[] nextLongArrayOneBased(int n) throws IOException
+        {
+          long a[]=new long[n+1];
+          for(int i=1;i<=n;i++)
+                a[i]=nextLong();
+          return a;
+        }
+  }
+}
+

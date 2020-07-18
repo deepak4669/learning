@@ -1,0 +1,42 @@
+import java.util.Scanner;
+public java EDIST
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      String a=sc.next();
+      String b=sc.next();
+      int ans=solve(a,b);
+      System.out.println(ans);
+    }
+  }
+  public static int solve(String a, String b)
+  {
+    if(a.length()==1&&b.length()==1)
+    {
+      if(a.equals(b)) return 0;
+      else return 1;
+    }
+    else
+    {
+      if(a.length()>b.length())
+      {
+        return (a.length()-b.length())+solve(a.substring(0,b.length),b);
+      }
+      else if(a.length()<b.length())
+      {
+        return (b.length()-a.length())+solve(a,b.substring(0,a.length()));
+      }
+      else
+      {
+        if(a.charAt(a.length-1)==b.charAt(b.length-1))
+          return solve(a.substring(0,a.length()-1),b.substring(0,b.length()-1));
+      }
+    }
+  }
+}
+      
+  

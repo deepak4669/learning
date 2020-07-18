@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class Main300A
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int[] a=new int[n];
+    int neg=0;
+    int neg_index=0;
+    int pos=0;
+    int pos_index=0;
+    for(int i=0;i<n;i++)
+    {
+      a[i]=sc.nextInt();
+      if(a[i]<0&&neg==0){
+        neg_index=i;
+        neg++;
+      }
+        
+      else if(a[i]>0&&pos==0){
+        pos++;
+        pos_index=i;
+      }
+      
+    }
+    System.out.println("1 "+a[neg_index]);
+    System.out.println("1 "+a[pos_index]);
+    
+    System.out.println(n-2+" ");
+    for(int i=0;i<n;i++)
+    {
+      if(i==neg_index||i==pos_index)
+        continue;
+      else
+      {
+        System.out.print(a[i]+" ");
+      }
+    }
+  }
+}
+      
+    
+  

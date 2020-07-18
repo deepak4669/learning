@@ -1,0 +1,28 @@
+import java.util.Scanner;
+public class AppleandOrange
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int s=sc.nextInt();
+    int t=sc.nextInt();
+    int a=sc.nextInt();
+    int b=sc.nextInt();
+    int m=sc.nextInt();
+    int n=sc.nextInt();
+    int countApple=0;
+    int countOrange=0;
+    for(int i=0;i<m;i++)
+    {
+      int apple=sc.nextInt();
+      if((s-a)<=apple&&apple<=(t-a)) countApple++;
+    }
+    for(int i=0;i<n;i++)
+    {
+      int orange=sc.nextInt();
+      if(orange<=(t-b)&&orange>=(s-b)) countOrange++;
+    }
+    System.out.println(countApple);
+    System.out.println(countOrange);
+  }
+}

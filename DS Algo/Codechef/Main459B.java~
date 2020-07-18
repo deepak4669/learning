@@ -1,0 +1,29 @@
+import java.util.Scanner;
+public class Main459B
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int[] b=new int[n];
+    int min=1000000000;
+    int max=0;
+    for(int i=0;i<n;i++)
+    {
+      a[i]=sc.nextInt();
+      if(min>a[i]) min=a[i];
+      if(max<a[i]) max=a[i];
+    }
+    int count_max=0;
+    int count_min=0;
+    
+    for(int i=0;i<n;i++)
+    {
+      if(min==a[i]) count_min++;
+      if(max==a[i]) count_max++;
+    }
+    System.out.println((max-min)+" "+(count_min*count_max));
+  }
+}
+    
+  

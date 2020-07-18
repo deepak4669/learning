@@ -1,0 +1,39 @@
+import java.util.Scanner;
+import java.util.HashMap;
+public class FARIDA
+{
+  HashMap<Integer,Long> map=new HashMap<>();
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    for(int i=0;i<t;i++)
+    {
+      int n=sc.nextInt;
+      int[] a=new int[n];
+      for(int j=0;j<n;j++)
+        a[j]=sc.nextInt();
+      long ans=solve(n,a);
+      System.out.println(ans);
+      
+    }
+  }
+  public static long solve(int[] a,int n)
+  {
+    if(map.containsKey(n)) return map.get(n);
+    if(n==0) return 0;
+    if(n==1) return a[0];
+    long a=solve(a,n-1);
+    long b=solve(a,n-2)+a[n-1];
+    long max;
+    if(a>b)
+      max=a;
+    else
+      max=b;
+    map.put(n,max);
+    return max;
+  }
+}
+    
+              
+       

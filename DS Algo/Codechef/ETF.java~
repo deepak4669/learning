@@ -1,0 +1,32 @@
+import java.util.Scanner;
+public class ETF
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t>0)
+    {
+      int a=sc.nextInt();
+      int ans=solve(a);
+      System.out.println(ans);
+    }
+  }
+  public static int solve(int a)
+  {
+    int count=0;
+    for(int i=1;a<=a-1;i++)
+    {
+      int b=gcd(a,i);
+      if(b==1) count++;
+      
+    }
+    return count;
+  }
+  public static int gcd(int a,int b)
+  {
+    if(b==0) return a;
+    else return gcd(b,a%b);
+  }
+}
+     

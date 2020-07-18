@@ -1,0 +1,24 @@
+import java.util.Scanner;
+public class Main550A
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    String s=sc.next();
+    boolean flag=true;
+    for(int i=0;i<s.length()-2;i++)
+    {
+      if(s.charAt(i)=='B'&&s.charAt(i+1)=='A'&&s.charAt(i+2)=='B'||s.charAt(i)=='A'&&s.charAt(i+1)=='B'&&s.charAt(i+2)=='A')
+      {
+        flag=false;
+        break;
+      }
+    }
+    if(flag)
+      System.out.println("NO");
+    else
+      System.out.println("YES");
+  }
+}
+  
+        

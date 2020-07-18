@@ -1,0 +1,61 @@
+import java.util.Scanner;
+public class Main750
+{
+  static int a,b;
+  static int[] row;
+  static int counter;
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    //System.out.println();
+    while(t-->0)
+    {
+      a=sc.nextInt();
+      b=sc.nextInt();
+      --a;--b;
+      counter=0;
+      row=new int[8];
+      System.out.println("SOLN       COLUMN");
+      System.out.println(" #      1 2 3 4 5 6 7 8");
+      System.out.println();
+      backtrack(0);
+      if(t>0) System.out.println();
+    }
+  }
+  public static void backtrack(int c)
+  {
+    if(c==8&&row[b]==a)
+    {
+      ++counter;
+      if(counter>=10) System.out.print(counter+"      ");
+      else
+        System.out.print(" "+(counter)+"      ");
+      for(int i=0;i<7;i++)
+        System.out.print(row[i]+1+" ");
+      System.out.println(row[7]+1);
+    }
+    for(int i=0;i<8;i++)
+    {
+      if(place(i,c))
+      {
+        row[c]=i;
+        backtrack(c+1);
+      }
+    }
+  }
+  public static boolean place(int r,int c)
+  {
+    for(int i=0;i<c;i++)
+    {
+      if(row[i]==r||Math.abs(row[i]-r)==Math.abs(i-c))
+        return false;
+    }
+    return true;
+  }
+}
+      
+       
+
+      
+      

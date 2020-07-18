@@ -1,0 +1,17 @@
+import java.util.Scanner;
+public class EULER57
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int cnt=0;
+    for(int i=1;i<=1000;i++)
+    {
+      String[] s=convergent(i);
+      if(s[0].length()>s[1].length())
+        cnt++;
+    }
+    System.out.println(cnt);
+  }
+}
+    

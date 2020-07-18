@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class GLJIVE
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int sum=0;
+    for(int i=0;i<n;i++)
+    {
+      int a=sc.nextInt();
+      int s2=sum+a;
+      if(Math.abs(s2-100)<=Math.abs(sum-100))
+      {
+        sum+=a;
+      }
+      if(s2>100) break;
+    }
+    System.out.println(sum);
+  }
+}
+      
+        

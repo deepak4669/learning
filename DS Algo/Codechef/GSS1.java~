@@ -1,0 +1,79 @@
+import java.util.Scanner;
+public class GSS1
+{
+  public static class SegmentTree{
+    private Node[] heap;
+    
+    public SegmentTree(int[] a)
+    {
+      int size=2*Math.pow(2.0,Math.floor(Math.log(a.length)/Math.log(2))+1);
+      heap=new Node[size];
+      build(1,0,a.length);
+    }
+    private void build(int v,int from, int size){
+      heap[v]=new Node();
+      heap[v].from=from;
+      heap[v].to=from+size-1;
+      if(size==1)
+      {
+        heap[v].maxSum=array[sum];
+      }
+      else
+      {
+        build(2*v,from,size/2);
+        build(2*v+1,from+size/2,size-size/2);
+        
+        heap[v].maxSum=Math.max(heap[2*v].maxSum,Math.max(heap[2*v+1].maxSum,heap[2*v].maxSum+heap[2*v+1].maxSum));
+      }
+    }
+    public int rsq(int from,int to)
+    {
+      return rsq(1, from,to);
+    }
+    private int rsq(int v,int from, int to)
+    {
+      Node n=heap[v];
+      if(contains(from,to,n.from,n.to)){
+        return heap[v].sum;
+      }
+      if(intersects(from,to,n.from,n.to))
+      {
+        int leftmax=rsq(2*v,from,to);
+        int rightmax=rsq(2*v+1,from,to);
+        return Math.max(leftmax,Math.max(rightmax,leftmax+rightmax));
+      }
+      return 0;
+    }
+    private boolean contains(int from1, int to1,int from2,int to2)
+    {
+      return from1<=from2&&to1>=to2;
+    }
+    private boolean intersects(int from1,int to1,int from2,int to2)
+    {
+      return from1<=from2&&to1>=from2||from1>=from2&&from1<=to2;
+    }
+    static class Node{
+      int maxSum;
+      int from;
+      int to;
+    }
+  }
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int[] a=new int[n];
+    for(int i=0i<n;i++)
+      a[i]=sc.nextInt();
+    int m=sc.nextInt();
+    SegmentTree tree=new SegmentTree(a);
+    for(int i=0;i<m;i++)
+    {
+      int x=sc.nextInt();
+      int y=sc.nextInt();
+      System.out.println(tree.rsq(x,y));
+    }
+  }
+}
+    
+        

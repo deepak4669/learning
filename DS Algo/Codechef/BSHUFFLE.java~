@@ -1,0 +1,68 @@
+import java.util.*;
+import java.io.*;
+
+public class BSHUFFLE
+{
+  public static void main(String[] args) throws IOException
+  {
+    Reader sc=new Reader();
+    PrintWriter out=new PrintWriter(System.out);
+    HashMap<String,Integer> map=new HashMap<String,Integer>();
+    
+    int n=sc.nextInt();
+    int a[]=new int[n];
+    
+    for(int i=0;i<n;i++)
+      a[i]=i+1;
+    
+    
+    int iter=10000;
+    while(iter->0)
+    {
+      for(int i=0;i<n;i++)
+      {
+        int j=(int)(Math.random(49)+1);
+        exch(a,i,j);
+      }
+      String s=Arrays.toString(a);
+      if(!map.containsKey(s))
+      {
+        map.put(s,1);
+      }
+      else
+      {
+        map.put(s,map.get(s)+1);
+        //if(map.get(s)>max) max=map.get(s);
+      }
+    }
+    int max=0;
+    int min=100000000;
+    StringBuilder p1=new StringBuilder();
+    StringBuilder p2=new StringBuilder();
+    for(Map.Entry<String, Integer> entry: map.entrySet())
+    {
+      if(entry.getValue>max)
+      {
+        p1=entry.getKey();
+        max=entry.getValue();
+      }
+      if(entry.getValue<min)
+      {
+        p2=entry.getKey();
+        max=entry.getValue();
+      }
+    }
+    out.println(p1);
+    out.println(p2);
+    out.flush();
+  }
+}
+      
+      
+      
+      
+    
+    
+    
+    
+    

@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class Main507B
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    long r=sc.nextLong();
+    long x=sc.nextLong();
+    Long y=sc.nextLong();
+    Long x2=sc.nextLong();
+    Long y2=sc.nextLong();
+    double diff_x=Math.abs(x-x2);
+    double diff_y=Math.abs(y-y2);
+    if(diff_x==0&&diff_y==0)
+      System.out.println(0);
+    else
+    {
+      //System.out.println(diff_x);
+      //System.out.println(diff_y);
+      double dist=Math.sqrt(diff_x*diff_x+diff_y*diff_y);
+      //System.out.println(dist);
+      //dist=dist/(2*r);
+      //System.out.println(dist);
+      double ans=Math.ceil(dist/(2*r));
+      System.out.println((int)ans);
+    }
+  }
+}
+      
+      
+      

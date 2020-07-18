@@ -1,0 +1,52 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class EULER51
+{
+  static boolean[] prime=new boolean[50];
+  public static void sieve(int n)
+  {
+    Arrays.fill(prime,true);
+    prime[0]=false;
+    prime[1]=false;
+    int m =(int)Math.sqrt(n);
+    for(int i=2;i<=m;i++)
+    {
+      if(prime[i])
+      {
+        for(int j=i*i;j<=n;j+=i)
+        {
+          prime[j]=false;
+        }
+      }
+    }
+  }
+  public static void main(String[] args)
+  {
+    sieve(49);
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      int ans=1;
+      for(int i=n;i>=2;i--)
+      {
+        if(prime[i])
+        {
+          
+          int j=i;
+          while(j<=n)
+          {
+            j*=i;
+          }
+          j/=i;
+          ans*=j;
+          //System.out.println(j);
+        }
+      }
+      System.out.println(ans);
+    }
+  }
+}
+      

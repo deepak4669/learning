@@ -1,0 +1,30 @@
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+public class Euler99B
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=22000;
+    double max=0.0;
+    int index=0;
+    
+    for(int i=0;i<n;i++)
+    {
+      String s=sc.nextLine();
+      String[] numbers=s.split(",");
+      int a=Integer.parseInt(numbers[0]);
+      int b=Integer.parseInt(numbers[1]);
+      double curr=b*(double)Math.log(a);
+      if(curr>max)
+      {
+        max=curr;
+        index=i;
+      }
+    }
+    System.out.println(index);
+  }
+}
+      

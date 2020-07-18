@@ -1,0 +1,23 @@
+import java.util.*;
+
+public class UVa408
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    while(sc.hasNextLine())
+    {
+      int a=sc.nextInt();
+      int b=sc.nextInt();
+      boolean flag=true;
+      if(gcd(a,b)!=1)
+        flag=false;
+      if(flag)
+        System.out.printf("%-10s %-10d  %-05d  %s\n","",a,b,"Good Choice");
+      else
+        System.out.printf("%-10s %-10d  %-05d  %s\n","",a,b,"Bad Choice");
+    }
+  }
+}
+        
+    

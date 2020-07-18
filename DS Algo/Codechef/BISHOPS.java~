@@ -1,0 +1,23 @@
+import java.util.Scanner;
+import java.math.BigInteger;
+public class BISHOPS
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=1024;
+    while(t>0)
+    {
+      BigInteger n=sc.nextBigInteger();
+      BigInteger ans=solve(n);
+      System.out.println(ans);
+      t-=1;
+    }
+  }
+  public static BigInteger solve(BigInteger n)
+  {
+    if(n<=1) return n;
+    return solve(n-2).add(n);
+  }
+}
+     

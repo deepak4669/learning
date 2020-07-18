@@ -1,0 +1,61 @@
+import java.util.Scanner;
+import java.util.*;
+public class EUlER58
+{
+  static int[] IsPrime=new int[100000001];
+  static void sieve()
+  {
+    Arrays.fill(IsPrime,1);
+    IsPrime[1]=0;
+    IsPrime[0]=0;
+    int m=(int)Math.sqrt(100000001);
+    for(int i=2;i<=m;i++)
+    {
+      if(IsPrime[i]==1)
+      {
+        for(int j=i*i;j<=100000000;j+=i)
+        {
+          IsPrime[j]=0;
+        }
+      }
+    }
+  }
+    
+  
+  
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    sieve();
+    int x=sc.nextInt();
+    int cnt=0;
+    int n=1;
+    //double prob=0.0;
+    while(true)
+    {
+      int tpr=(2*n-1)*(2*n-1)+2*n;
+      int tpl=(2*n-1)*(2*n-1)+4*n;
+      int bl=(2*n-1)*(2*n-1)+6*n;
+      int br=(2*n-1)*(2*n-1)+8*n;
+      cnt+=IsPrime[tpr]+IsPrime[tpl]+IsPrime[bl]+IsPrime[br];
+      
+      double val=Math.ceil(cnt*100/(4*n+1));
+      if(val<x)
+        break;
+      n++;
+    }
+    //System.out.println(prob);
+    System.out.println(2*n+1);
+  }
+  public static int isPrime(int n)
+  {
+    for(int i=2;i<=Math.sqrt(n);i++)
+    {
+      if(n%i==0)
+        return 0;
+    }
+    return 1;
+  }
+}
+        
+      

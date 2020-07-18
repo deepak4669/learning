@@ -1,0 +1,94 @@
+import java.util.*;
+import java.io.*;
+public class PROBLEMS
+{
+  static class Node{
+    int S,index,count;
+    int[] SC;
+    int[] NSC;
+    public Node(int S,int[] SC,int[] NSC,int index)
+    {
+      this.S=S;
+      this.index=index;
+      this.SC=Arrays.copyOf(SC,SC.length);
+      this.NSC=Arrays.copyOf(NSC,NSC.length);
+      this.count=Count();
+    }
+    public int Count()
+    {
+      int[] temp=new int[S];
+      temp=Arrays.copyOf(SC);
+      Arrays.sort(temp);
+      int ans=0;
+      for(int i=0;i<S;i++)
+      {
+        int in=search(temp[i]);
+        if(
+        if(
+        
+      
+      
+      
+  public static void main(String[] args) throws IOEXception
+  {
+    Reader sc=new Reader();
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int p=sc.nextInt();
+      int s=sc.nextInt();
+      
+      int[] sci=new int[s];
+      int[] nsc=new int[s];
+      Node[] obj=new Node[p];
+      
+      int k=0;
+      for(int i=0;i<2p;i++)
+      {
+        if(i%2==0)
+        {
+          for(int j=0;j<s;j++)
+          {
+            sci[k][j]=sc.nextInt();
+          }
+        }
+        else
+        {
+          for(int j=0;j<s;j++)
+          {
+            nsc[k][j]=sc.nextInt();
+          }
+          k++;
+        }
+      }
+      int[] count=new int[p];
+      for(int i=0;i<p;i++)        
+      {
+        int[] array=new int[sci[i].length];
+        array=Arrays.copyOf(sci[i],sci[i].length);
+        Arrays.sort(sci[i]);
+        
+        for(int j=0;j<s;j++)
+        {
+          int index=search(array,sci[i][j]);
+          array[index]=-1000;
+          int index2=search(array,sci[i][j+1]);
+          if(nsc[i][index]>nsc[i][index2])
+            count[i]++;
+        }
+      }
+      int[] temp=new int[p];
+      temp=Arrays.copyOf(count,count.length);
+      Arrays.sort(temp);
+      
+      
+      for(int i=0;i<p;i++)
+      {
+        
+        
+        
+        
+        
+        
+      
+      

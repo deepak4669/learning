@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class EULER253
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int N=sc.nextInt();
+      double phi=(1+Math.sqrt(5))/2;
+      double ans=((N-1)+Math.log(5)/2)log(phi);
+      System.out.println(Math.ceil(ans));
+    }
+  }
+}

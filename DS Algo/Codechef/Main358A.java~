@@ -1,0 +1,53 @@
+import java.util.Scanner;
+public class Main358A
+{
+  public static class circles implements Comparable<circles>
+  {
+    int xmin,xmax;
+    public circles(int a, int b)
+    {
+      this.xmin=a;
+      this.xmax=b;
+    }
+    public int compareTo(circles that)
+    {
+      if(this.xmin<that.xmin) return -1;
+      else if(this.xmin>that.min) return +1;
+      else return 0;
+    }
+  }
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    circles[] a=new circles[n];
+    //int min=sc.nextInt();
+    //int max=sc.nextInt();
+    for(int i=0;i<n;i++)     
+    {
+      int x=sc.nextInt();
+      int y=sc.nextInt();
+      a[i]=new circles(x,y);
+    }
+    //Arrays.sort(a);
+    boolean flag=false;
+    for(int i=1;i<n;i++)
+    {
+      for(int j=0;j<i;j++)
+      {
+        if(a[i].xmin<a[j].xmax&&a[i].xmin>a[j].xmin&&a[i].xmax>a[j].xmax||a[i].xmin<a[j].xmin&&a[i].xmax>a[j].xmin&&a[i].xmax<a[j].xmax)      
+        {
+          flag=true;
+          break;
+        }
+      }
+      if(flag)
+        break;
+    }
+    if(flag)
+      Sytem.out.println("yes");
+    else System.out.println("no");
+  }
+}
+        
+      

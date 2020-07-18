@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class Main460B
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int a=sc.nextInt();
+    int b=sc.nextInt();
+    int c=sc.nextInt();
+    int cnt=0;
+    int[] sol=new int[1000000];
+    for(int i=1;i<=81;i++)
+    {
+      long med=(b*(long)Math.pow(i,a))+(long)c;
+      int sum=0;
+      int n=med;
+      while(n>0)
+      {
+        sum+=(n%10);
+        n/=10;
+      }
+      if(sum==i)
+      {
+        sol[cnt++]=sum;
+      }
+    }
+    for(int i=0;i<cnt;i++)
+    {
+      System.out.println(sol[i]);
+    }
+  }
+}
+      
+      
+    

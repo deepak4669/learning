@@ -1,0 +1,61 @@
+import java.util.Scanner;
+public class EULER28
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int down=1;
+    int left=3;
+    int up=3;
+    int right=3;
+    int[][] a=new int[n][n];
+    a[n/2][n/2]=1;
+    int i=n/2;
+    int j=n/2+1;
+    int val=2;
+    while(i==0&&j==n-1)
+    {
+      int k=down;
+      while(k>=0)
+      {
+        a[i++][j]=val++;
+        k--;
+      }
+      i--;
+      down+=2;
+      k=left;
+      while(k>=0)
+      {
+        a[i][j--]=val++;
+        k--;
+      }
+      j++;
+      left+=2;
+      k=up;
+      while(k>=0)
+      {
+        a[i--][j]=val++;
+        k--;
+      }
+      up+=2;
+      i++;
+      k=right;
+      while(k>=0)
+      {
+        a[i][j++]=val++;
+        k--;
+      }
+      j--;
+      right+=2;
+    }
+    for(int i=0;i<n;i++)
+    {
+      for(int j=0;j<n;j++)
+        System.out.print(a[i][j]);
+      System.out.println();
+    }
+  }
+}
+    
+      

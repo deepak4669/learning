@@ -1,0 +1,52 @@
+import java.util.*;
+import java.io.*;
+public class MARTIAN
+{
+  static int[][] dp;
+  static int[][] y;
+  static int[][] b;
+  public static void main(String[] args) throws IOException
+  {
+    Reader sc=new Reader();
+    while(true)
+    {
+      int n=sc.nextInt();
+      int m=sc.nextInt();
+      if(n==0&&m==0) break;
+      dp=new int[n][m];
+      y=new int[n][m];
+      b=new int[n][m];
+      for(int i=0;i<n;i++)
+      {
+        for(int j=0;j<m;j++)
+          y[i][j]=sc.nextInt();
+      }
+      for(int i=0;i<n;i++)
+      {
+        for(int j=0;j<m;j++)
+          b[i][j]=sc.nextInt();
+      }
+      int ans=solve(n-1,m-1);
+      System.out.println(ans);
+    }
+  }
+  public static solve(int i,int j)
+  {
+    if(i==0&&j==0) return y[i][j]>b[i][j]?y[i][j]:b[i][j];
+    else if(dp[i][j]!=0) return dp[i][j];
+    else{
+      int col=0;
+      for(int p=0;p<i;p++)
+        col+=b[i][j];
+      int ans1=col+solve(i,j-1);
+      int row=0;
+      for(int p=0;p<j;p++)
+        row+=y[i][j];
+      int ans2=row+solve(i-1,j);
+      int ans=Math.max(ans1,ans2);
+      dp[i][j]=ans;
+      return ans;
+    }
+  }
+}
+      

@@ -1,0 +1,174 @@
+import java.util.*;
+import java.io.*;
+//heads true
+//tails false
+public class FLIPCOIN
+{
+  static boolean[] array;
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int q=sc.nextInt();
+    array=new boolean[n];
+    SegmentTree tree=new SegmentTree(array);
+    for(int i=0;i<q;i++)
+    {
+      int a=sc.nextInt();
+      if(a==1)
+      {
+        int b=sc.nextInt();
+        int c=sc.nextInt();
+        //System.out.println(tree.query(1,b,c).pendingUpdate);
+        System.out.println(tree.query(b,c));
+      }
+      else{
+        int b=sc.nextInt();
+        int c=sc.nextInt();
+        tree.update(b,c);
+      }
+    }
+  }
+  
+  public static class SegmentTree{
+    
+    public Node[] heap;
+    
+    
+    public int getSize(int n)
+    {
+      int size=1;
+      for(;size<n;size<<=1);
+      return size<<1;
+    }
+    
+    public SegmentTree(boolean[] a)
+    {
+      int size=getSize(a.length);
+      heap=new Node[size];
+      build(a,1,0,a.length-1);
+    }
+    public void build(boolean[] a,int v,int start,int end)
+    {
+      heap[v]=new Node();
+      heap[v].start=start;
+      heap[v].end=end;
+      if(start==end)
+      {
+        heap[v].assignValue(a[start]);
+        return;
+      }
+      int mid=(start+end)/2;
+      int left=2*v;
+      int right=left+1;
+      build(a,left,start,mid);
+      build(a,right,mid+1,end);
+      heap[v].merge(heap[left],heap[right]);
+    }
+    
+    public int query(int start, int end)
+    {
+      Node result=new Node();
+      result=query(1,start,end);
+      return result.getValue();
+    }
+    
+    public Node query(int v, int start,int end)
+    {
+      if(heap[v].start==start&&heap[v].end==end)
+      {
+        Node result=heap[v];
+        if(result.hasPendingUpdate())
+          result.applyPendingUpdate();
+        return result;
+      }
+      int mid=(heap[v].start+heap[v].end)/2;
+      int left=2*v;
+      int right=left+1;
+      
+      Node result=new Node();
+      if(start>mid)
+        result=query(right,start,end);
+      else if(end<=mid)
+        result=query(left,start,end);
+      else{
+        Node leftResult=query(left,start,mid);
+        Node rightResult=query(right,mid+1,end);
+        result.start=leftResult.start;
+        result.end=rightResult.end;
+        result.merge(leftResult,rightResult);
+      }
+      if(heap[v].hasPendingUpdate())
+      {
+        result.addUpdate();
+        result.applyPendingUpdate();
+      }
+      return result;
+    }
+    public void update(int start, int end)
+    {
+      update(1,start,end);
+    }
+    public void update(int v,int start,int end)
+    {
+      if(heap[v].start==start&&heap[v].end==end){
+        heap[v].addUpdate();
+        return;
+      }
+      
+      int mid=(heap[v].start+heap[v].end)/2;
+      int left=2*v;
+      int right=left+1;
+      
+      if(start>mid)
+        update(right,start,end);
+      else if(end<=mid)
+        update(left,start,end);
+      else{
+        update(left,start,mid);
+        update(right,mid+1,end);
+      }
+      heap[v].merge(heap[left],heap[right]);
+    }
+    
+    public class Node{
+      public int start,end;
+      public int count=0;
+      public boolean pendingUpdate=false;
+      
+      
+      public void assignValue(boolean value){}
+      
+      public void merge(Node left,Node right)
+      {
+        count=(left.pendingUpdate?(left.end-left.start+1-left.count):left.count)+(right.pendingUpdate?(right.end-right.start+1-right.count):right.count);
+      }
+      
+      public int getValue(){
+        return count;
+      }
+      public boolean hasPendingUpdate(){
+        return pendingUpdate;
+      }
+      
+      void applyPendingUpdate(){
+        assert pendingUpdate==true;
+        count=(end-start+1)-count;
+        pendingUpdate=false;
+      }
+      void addUpdate(){
+        pendingUpdate=!pendingUpdate;
+      }
+      public boolean getPendingUpdate(){
+        return true;
+      }
+    }
+  }
+}
+          
+          
+      
+        
+      
+    
+    

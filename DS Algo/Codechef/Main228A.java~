@@ -1,0 +1,38 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class Main228A
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    boolean done=false;
+    int[] a=new int[4];
+    int count_distinct=1;
+    for(int i=0;i<4;i++)
+    {
+      a[i]=sc.nextInt();
+    }
+    Arrays.sort(a);
+    for(int i=1;i<4;i++)
+    {
+      if(!search(a,0,i-1,a[i])) count_distinct++;
+    }
+    System.out.println(4-count_distinct);
+  }
+  public static boolean search(int[] a,int lo,int hi,int k)
+  {
+    while(lo<=hi)
+    {
+      int mid=lo+(hi-lo)/2;
+      if(a[mid]<k) lo=mid+1;
+      else if(a[mid]>k) hi=mid-1;
+      else return true;
+    }
+    return false;
+  }
+}
+        
+      
+      
+
+  

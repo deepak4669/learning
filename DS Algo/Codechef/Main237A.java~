@@ -1,0 +1,26 @@
+import java.util.Scanner;
+public class Main237A
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int ans=1;
+    int prevH=sc.nextInt();
+    int prevM=sc.nextInt();
+    for(int i=1;i<n;i++)
+    {
+      int hour=sc.nextInt();
+      int minute=sc.nextInt();
+      if(prevH==hour&&prevM==minute)
+      {
+        ans++;
+      }
+      prevH=hour;
+      prevM=minute;
+    }
+    System.out.println(ans);
+  }
+}
+    
+      

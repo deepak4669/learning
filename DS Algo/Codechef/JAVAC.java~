@@ -1,0 +1,39 @@
+import java.util.Scanner;
+public class JAVAC
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=1000;
+    while(t-->0)
+    {
+      String s=new sc.nextLine();
+      if(Character.isUpperCase(s.charAt(0))||s.charAt(0)=='_')
+      {
+        System.out.println("Error");
+        continue;
+      }
+      String r="";
+      for(int i=0;i<s.length();i++)
+      {
+        char ch=s.charAt(i);
+        if(Character.isLowerCase(ch))
+        {
+          r+=ch;
+        }
+        else if(ch=='_')
+        {
+          r+=Character.toUpperCase(charAt(i+1));
+          i++;
+        }
+        else if(Charcter.isUpperCase(ch))
+        {
+          r+=Character.toLowerCase(ch);
+        }
+      }
+      System.out.println(r);
+    }
+  }
+}
+        
+      

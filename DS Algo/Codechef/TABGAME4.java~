@@ -1,0 +1,126 @@
+import java.util.*;
+public class TABGAME4
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int p=sc.nextInt();
+    while(p-->0)
+    {
+      String s=sc.nextLine();
+      String t=sc.nextLine();
+      int n=s.length();
+      int m=t.length();
+      char[][] ans=new char[3][m+1];
+      //char[] row2=new char[m+1];
+      char[][] col=new char[3][n+1];
+      //char[] col2=new char[n+1];
+      for(int i=1;i<=2;i++)
+      {
+       
+        
+        //ans=new char[m+1];
+        for(int j=1;j<=m;j++)
+        {
+          if(i-1==0&&j-1==0)
+          {
+            //System.out.println(s.charAt(i-1)+" "+t.charAt(i-1));
+            if(s.charAt(0)=='0'||t.charAt(0)=='0')
+            {
+              //System.out.println("s");
+              
+              ans[i][j]='A';
+              //System.out.println(ans[i][j]);
+            }
+            else
+              ans[i][j]='B';
+            //st+=ans[j];
+          }
+          else if(i-1==0)
+          {
+            assert (j-1)!=0;
+            if(s.charAt(j-1)=='0'||ans[i][j-1]=='B')
+              ans[i][j]='A';
+            else
+              ans[i][j]='B';
+            //st+=ans[j];
+          }
+          else if(j-1==0)
+          {
+            assert (i-1)!=0;
+            if(t.charAt(i-1)=='0'||ans[i-1][j]=='B')
+            {
+              ans[i][j]='A';
+              //System.out.println(ans[i][j]);
+            }
+            else
+              ans[i][j]='B';
+            //st+=ans[j];
+          }
+          else
+          {
+            if(ans[i-1][j]=='B'||ans[i][j-1]=='B')
+              ans[i][j]='A';
+            else
+              ans[i][j]='B';
+            //st+=ans[j];
+          }
+          
+        }
+       // map.put(i,st);
+      }
+      for(int j=1;j<=2;j++)
+      {
+        for(int i=1;i<=n;i++)
+        {
+          if(i-1==0&&j-1==0)
+          {
+            if(s.charAt(0)==0||t.charAt(0)==0)
+              col[i][j]='A';
+            else
+              col[i][j]'B';
+          }
+          else if(j-1==0)
+          {
+            if(t.charAt(i-1)=='0'||col[i-1][j]=='B')
+              col[i][j]='A';
+            else
+              col[i][j]='B';
+          }
+          else if(i-1==0)
+          {
+            if(s.charAt(j-1)=='0'||col[i][j-1]=='B')
+              col[i][j]='A';
+            else
+              col[i][j]='B';
+          }
+          else
+          {
+            if(col[i-1][j]=='B'||col[i][j-1]=='B')
+              col[i][j]='A';
+            else
+              col[i][j]='B';
+          }
+        }
+      }
+      int q=sc.nextInt();
+      for(int i=0;i<q;i++)
+      {
+        int x=sc.nextInt();
+        int y=sc.nextInt();
+        if(x==y)
+        {
+          System.out.print((col[2][2]=='A'?1:0));
+        }
+        else if(x>y)
+        {
+          System.out.println((col[x-y+2][2]=='A'?1:0));
+        }
+        else
+          System.out.println((row[2][y-x+2]=='A'?1:0));
+      }
+    }
+  }
+}
+                           
+                          

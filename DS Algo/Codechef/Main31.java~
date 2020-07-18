@@ -1,0 +1,21 @@
+import java.util.Scanner;
+import java.math.BigInteger;
+public class Main31
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    long long n=sc.nextInt();
+    while(n>1)
+    {
+      if(n%2!=0)
+      {
+        Sytem.out.println("NIE");
+        System.exit(0);
+      }
+      else n=n/2;
+    }
+    System.out.println("TAK");
+  }
+}
+      

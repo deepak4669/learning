@@ -1,0 +1,70 @@
+import java.util.*;
+public class Main10106
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    while(sc.hasNextLine())
+    {
+      String x=sc.next();
+      String y=sc.next();
+      String min="";
+      String mul="";
+      
+      if(x.length()<y.length())
+      {
+        min=x;
+        mul=y;
+      }
+      else
+      {
+        min=y;
+        mul=x;
+      }
+      
+        
+      
+      
+      int mx=Math.max(x.length(),y.length());
+      int mn=Math.min(x.length(),y.length());
+      
+      int[][] sol=new int[mn][2*mx];
+      for(int i=0;i<mn;i++)
+      {
+        int k=i;
+        int p=Integer.parseInt(min.substring(min.length()-i-1,min.length()-i));
+        int carry=0;
+        
+        for(int j=0;j<mx;j++)
+        {
+          int q=Integer.parseInt(min.substring(mul.length()-i-1.mul.length()-i));
+          int r=p*q+carry;
+          sol[i][j]=r%10;
+          carry=r/10;
+        }
+        sol[i][j+1]=carry;
+      }
+      int[] ans=new int[2*mx];
+      for(int i=0;i<2*mx;i++)
+      {
+        for(int j=0;j<mn;j++)
+        {
+          ans[i]+=sol[i][j];
+        }
+      }
+      for(int i=ans.length-1;i>=0;i--)
+        System.out.print(ans[i]);
+      System.out.println();
+    }
+  }
+}
+          
+          
+          
+          
+          
+          
+      
+      
+      
+  

@@ -1,0 +1,179 @@
+import java.util.*;
+import java.io.*;
+//267630EY
+public class Main580B
+{
+  static PrintWriter out=new PrintWriter(System.out);
+  public static class pair implements Comparable<pair>
+  {
+    int m;
+    int s;
+    public pair(int a,int b)
+    {
+      this.m=a;
+      this.s=b;
+    }
+    public int compareTo(pair that)
+    {
+      if(this.m<that.m) return -1;
+      else if(this.m>that.m) return +1;
+      else return 0;
+    }
+  }
+
+  public static void main(String[] args) throws IOException
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int d=sc.nextInt();
+    pair[] a=new pair[n];
+    for(int i=0;i<n;i++)
+    {
+      int m=sc.nextInt();
+      int s=sc.nextInt();
+      a[i]=new pair(m,s);
+    }
+    long[] sum=new long[n];
+    Arrays.sort(a);
+    sum[0]=a[0].s;
+    long ans=0;
+    for(int i=1;i<n;i++)
+    {
+      sum[i]=sum[i-1]+a[i].s;
+    }
+//    for(int i=0;i<n;i++)
+//      System.out.println(a[i].m);
+//    System.out.println(index(a[0].m+d,a,0,a.length-1));
+    
+    
+    
+    for(int i=0;i<n;i++)
+    {
+//      System.out.println(a[i].m);
+      int curr=a[i].m;
+      int limit=curr+d;
+      int j=index(limit,a,0,a.length-1);
+      long f=(i==0)?(sum[j]):(sum[j]-sum[i-1]);
+      ans=Math.max(f,ans);
+    }
+    
+    out.println(ans);
+    out.flush();
+                
+    
+  }
+  public static int index(int limit,pair[] a,int lo,int hi)
+  {
+    int l=lo;
+    int r=hi;
+    while(l<r)
+    {
+      int mid=l+(r-l+1)/2;
+      if(a[mid].m<limit)
+        l=mid;
+      else
+        r=mid-1;
+    }
+    return l;
+  }
+        
+      
+    
+  
+  static class Scanner
+  {
+    BufferedReader br;
+    StringTokenizer tk=new StringTokenizer("");
+    public Scanner(InputStream is) 
+    {
+      br=new BufferedReader(new InputStreamReader(is));
+    }
+    
+    public boolean hasNext()
+    {
+      
+
+      boolean result=false;
+      
+      try 
+      {
+        result = br.ready();
+      } 
+      catch (IOException e)
+      {
+        System.err.println(e);
+      }
+      return result;
+    }
+    
+    public int nextInt() throws IOException
+    {
+      if(tk.hasMoreTokens())
+        return Integer.parseInt(tk.nextToken());
+      tk=new StringTokenizer(br.readLine());
+      return nextInt();
+    }
+    public long nextLong() throws IOException
+    {
+      if(tk.hasMoreTokens())
+        return Long.parseLong(tk.nextToken());
+      tk=new StringTokenizer(br.readLine());
+      return nextLong();
+    }
+    public String next() throws IOException
+    {
+      if(tk.hasMoreTokens())
+        return (tk.nextToken());
+      tk=new StringTokenizer(br.readLine());
+      return next();
+    }
+    public String nextLine() throws IOException
+    {
+      tk=new StringTokenizer("");
+      return br.readLine();
+    }
+    public double nextDouble() throws IOException
+    {
+      if(tk.hasMoreTokens())
+        return Double.parseDouble(tk.nextToken());
+      tk=new StringTokenizer(br.readLine());
+      return nextDouble();
+    }
+    public char nextChar() throws IOException
+    {
+      if(tk.hasMoreTokens())
+        return (tk.nextToken().charAt(0));
+      tk=new StringTokenizer(br.readLine());
+      return nextChar();
+    }
+    public int[] nextIntArray(int n) throws IOException
+    {
+      int a[]=new int[n];
+      for(int i=0;i<n;i++)
+        a[i]=nextInt();
+      return a;
+    }
+    public long[] nextLongArray(int n) throws IOException
+    {
+      long a[]=new long[n];
+      for(int i=0;i<n;i++)
+        a[i]=nextLong();
+      return a;
+    }
+    public int[] nextIntArrayOneBased(int n) throws IOException
+    {
+      int a[]=new int[n+1];
+      for(int i=1;i<=n;i++)
+        a[i]=nextInt();
+      return a;
+    }
+    public long[] nextLongArrayOneBased(int n) throws IOException
+    {
+      long a[]=new long[n+1];
+      for(int i=1;i<=n;i++)
+        a[i]=nextLong();
+      return a;
+    }
+  }
+}
+

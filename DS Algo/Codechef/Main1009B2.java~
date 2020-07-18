@@ -1,0 +1,30 @@
+import java.util.*;
+public class Main1009B2
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    String s=sc.next();
+    StringBuilder st=new StringBuilder();
+    String o="";
+    for(int i=0;i<s.length();i++)
+    {
+      if(s.charAt(i)=='1') o+="1";
+      else st.append(st.charAt(i));
+    }
+    int pos=0;
+    for(int i=0;i<s.length();i++)
+    {
+      if(st.charAt(i)=='2')
+      {
+        pos=i;
+        break;
+      }
+    }
+    st.insert(pos+1,o);
+    System.out.println(st);
+  }
+}
+    
+      
+      

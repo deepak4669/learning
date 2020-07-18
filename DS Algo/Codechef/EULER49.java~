@@ -1,0 +1,44 @@
+import java.util.Scanner;
+import java.util.*;
+public class EULER49
+{
+  static n=1000000;
+  static boolean[] prime=new boolean[n+1];
+  static Vector<Integer> ans=new Vector<Integer>();
+  static void preprocess()
+  {
+    Arrays.fill(prime,true);
+    prime[0]=false;
+    prime[1]=false;
+    int m=(int)Math.sqrt(n);
+    for(int i=2;i<=m;i++)
+    {
+      if(prime[i])
+      {
+        for(int j=i*i;j<=n;j+=i)
+        {
+          prime[j]=false;
+        }
+      }
+    }
+  }
+    
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    for(int i=1000;i<=10000;i++)
+    {
+      if(prime[i]&&prime[i+3330]&&prime[i+6660])
+      {
+        if(same(i,i+3330,i+6660))
+          ans.add(i);
+      }
+    }
+    for(int w:ans)
+      System.out.println(w);
+  }
+}
+           
+        
+      
+    

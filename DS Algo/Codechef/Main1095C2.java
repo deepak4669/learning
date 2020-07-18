@@ -1,0 +1,130 @@
+import java.util.*;
+import java.io.*;
+
+public class Main1095C2
+{
+  static PrintWriter out=new PrintWriter(System.out);
+  static int[] a;
+  static Vector<Integer> sol;
+  static int z;
+  public static void main(String[] args) throws IOException
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    sol=new Vector<Integer>();
+    int k=sc.nextInt();
+    z=0;
+    int l=1;
+    while(l<=n)
+    {
+      l=(int)Math.pow(2,z);
+      a[z++]=l;
+    }
+    boolean flag=solve(n,k);
+    if(!flag) out.println("NO");
+    else
+    {
+      out.println("YES");
+      for(int j:sol)
+        out.print(j+" ");
+    }
+  }
+  static boolean solve(int n,int k)
+  {
+    if(n==0&&k==0)
+      return true;
+    else
+    {
+      for(int i=z-1;i>=0;i--)
+      {
+        if(n>=a[i])
+        {
+          if(solve(n-a[i],k-1))
+            sol.add(a[i]);
+        }
+      }
+    }
+  }
+    
+    
+    
+  
+  static class Scanner
+  {
+    BufferedReader br;
+    StringTokenizer tk=new StringTokenizer("");
+    public Scanner(InputStream is) 
+        {
+      br=new BufferedReader(new InputStreamReader(is));
+    }
+        public int nextInt() throws IOException
+        {
+          if(tk.hasMoreTokens())
+                return Integer.parseInt(tk.nextToken());
+          tk=new StringTokenizer(br.readLine());
+          return nextInt();
+        }
+        public long nextLong() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return Long.parseLong(tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return nextLong();
+        }
+        public String next() throws IOException
+        {
+          if(tk.hasMoreTokens())
+            return (tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return next();
+        }
+        public String nextLine() throws IOException
+        {
+          tk=new StringTokenizer("");
+          return br.readLine();
+        }
+        public double nextDouble() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return Double.parseDouble(tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return nextDouble();
+        }
+        public char nextChar() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return (tk.nextToken().charAt(0));
+            tk=new StringTokenizer(br.readLine());
+            return nextChar();
+        }
+        public int[] nextIntArray(int n) throws IOException
+        {
+            int a[]=new int[n];
+            for(int i=0;i<n;i++)
+              a[i]=nextInt();
+            return a;
+        }
+        public long[] nextLongArray(int n) throws IOException
+        {
+          long a[]=new long[n];
+            for(int i=0;i<n;i++)
+              a[i]=nextLong();
+            return a;
+        }
+        public int[] nextIntArrayOneBased(int n) throws IOException
+        {
+          int a[]=new int[n+1];
+            for(int i=1;i<=n;i++)
+              a[i]=nextInt();
+            return a;
+        }
+        public long[] nextLongArrayOneBased(int n) throws IOException
+        {
+          long a[]=new long[n+1];
+          for(int i=1;i<=n;i++)
+                a[i]=nextLong();
+          return a;
+        }
+  }
+}
+

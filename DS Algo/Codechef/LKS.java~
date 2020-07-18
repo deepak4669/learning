@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+public class LKS
+{
+  public static void main(String[] args)
+  {
+    Reader sc=new Reader();
+    int k=sc.nextInt();
+    int n=sc.nextInt();
+    int[] v=new int[n];
+    int[] w=new int[n];
+    for(int i=0;i<n;i++)
+    {
+      v[i]=sc.nextInt();
+      w[i]=sc.nextInt();
+    }
+    int[][] A=new int[n+1][w+1];
+    for(int i=0;i<w;i++)
+    {
+      A[0][i]=0;
+    }
+    for(int i=1;i<=n;i++)
+    {
+      for(int x=0,x<=w;x++)
+      {
+        if(w[i]>x)
+        {
+          A[i,x]=A[i-1][x];
+        }
+        else{
+        A[i][x]=max(A[i-1][x],A[i-1][x-w[i]]+v[i]);
+        }
+      }
+    }
+    System.out.println(A[n][w]);
+    }
+}
+
+        
+      

@@ -1,0 +1,39 @@
+import java.util.Scanner;
+public class Main339B
+{
+  public static void main(String[] args)
+  {
+    int n=sc.nextInt();
+    int m=sc.nextInt();
+    int[] a=new int[n];
+    for(int i=0;i<n;i++)
+      a[i]=sc.nextInt();
+    int ans=0;
+    int current=1;
+    
+    for(int i=0;i<n;i++)
+    {
+      if(a[i]>current)
+      {
+        ans+=(a[i]-current);
+        current=a[i];
+      }
+      else if(a[i]<current)
+      {
+        ans+=(n-current)+a[i];
+        current=a[i];
+      }
+      else
+      {
+        ans+=0;
+        current=a[i];
+      }
+    }
+    System.out.println(ans);
+  }
+}
+        
+        
+        
+   
+  

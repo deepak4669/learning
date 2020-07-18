@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Euler6A",
+            "request": "launch",
+            "mainClass": "Euler6A"
+        }
+    ]
+}

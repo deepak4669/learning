@@ -1,0 +1,45 @@
+import java.util.Scanner;
+public class EULER45
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    long ans=0;
+    for(int i=286;;i++)
+    {
+      long val=(i*(i+1))/2;
+      if(hexagonal(val)&&pentagonal(val))
+      {
+        ans=val;
+        break;
+      }
+      
+    }
+    System.out.prinltn(ans);
+  }
+  public static boolean hexagonal(long v)
+  {
+    for(int i=143;;i++)
+    {
+      if(v==(i*(2*i-1)))
+        return true;
+      else if(i*(2*i-1)>v)
+        break;
+    }
+    return false;
+  }
+  public static boolean pentagonal(long v)
+  {
+    for(int i=165;;i++)
+    {
+      if(v==(i*(3*i-1))/2)
+        return true;
+      else if((i*(3*i-1))/2>v)
+        break;
+    }
+    return false;
+  }
+}
+        
+      
+      

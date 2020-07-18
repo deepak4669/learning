@@ -1,0 +1,28 @@
+import java.util.Scanner;
+public class BYTESM2
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      int m=sc.nextInt();
+      int[][] a=new int[n][m];
+      for(int i=0;i<n;i++)
+      {
+        for(int j=0;j<m;j++)
+          a[i][j]=sc.nextInt();
+      }
+      int ans=solve(a,n,m);
+      System.out.println(ans);
+    }
+  }
+  public static solve(int[] a,int n, int m)
+  {
+    if(n==1) return max(a,1,m);
+    int p1=a[n-1][maxIndex(a,n,m)]+solve(a,n-2,m);
+    int p2=a[n-1][maxIndex(a,n,m)-1]+solve(a,
+    
+                       

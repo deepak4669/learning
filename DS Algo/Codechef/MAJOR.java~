@@ -1,0 +1,36 @@
+import java.util.*;
+import java.io.*;
+public class MAJOR
+{
+  public static void main(String[] args) throws IOException
+  {
+    Reader sc=new Reader();
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
+      int max;
+      int ans;
+      for(int i=0;i<n;i++)
+      {
+        int a=sc.nextInt();
+        if(map.containsKey(a))
+          map.put(a,map.get(a)++);          
+        else
+          map.put(a,1);
+        if(map.get(a)>max)
+        {
+          max=map.get(a);
+          ans=a;
+        }
+      }
+      if(max>(n/2))
+        System.out.println("YES "+ans);
+      else
+        System.out.println("NO");
+    }
+  }
+}
+      
+        

@@ -1,0 +1,106 @@
+import java.util.*;
+import java.io.*;
+
+public class Main254B
+{
+  static int cal(int month,int day) 
+  {
+    int[] months={0,31,28,31,30,31,30,31,31,30,31,30,31};
+    int res=0;
+    for(int i=1;i<=month-1;i++)
+      res+=months[i];
+    return res+day;
+  }
+  static int call(int month,int day)
+  {
+    int[] months={0,31,29,31,30,31,30,31,31,30,31,30,31};
+    return months[month-1]+day;
+  }
+  
+    
+  static class olympiad implements Comparable<olympiad>
+  {
+    int month;
+    int day;
+    int p;
+    int t;
+    public olympiad(int month,int day,int p,int t)
+    {
+      this.month=month;
+      this.day=day;
+      this.p=p;
+      this.t=t;
+    }
+    public int compareTo(olympiad that)
+    {
+      int x=cal(this.month,this.day);
+      int y=cal(that.month,that.day);
+      if(x<y) return -1;
+      else if(x>y) return +1;
+      else return 0;
+      
+    }
+  }
+  public static void main(String[] args) throws IOException
+  {
+    File in=new File("input.txt");
+    Writer wr=new FileWriter("output.txt");
+    Scanner sc=new Scanner(in);
+    int n=sc.nextInt();
+    olympiad[] ol=new olympiad[n];
+    for(int i=0;i<n;i++)
+    {
+      int month=sc.nextInt();
+      int day=sc.nextInt();
+      int p=sc.nextInt();
+      int t=sc.nextInt();
+      ol[i]=new olympiad(month,day,p,t);
+    }
+   Arrays.sort(ol);
+   int prevm=ol[0].month;
+   int prevd=ol[0].day;
+   int curr=ol[0].p;
+   int spare=0;
+   for(int i=1;i<n;i++)
+   {
+     if(Math.abs(cal(prevm,prevd)-cal(ol[i].month,ol[i].day))<ol[i].t)
+     {
+       if(spare>0)
+       {
+         if(ol[i].p>spare)
+         {
+           curr+=(ol[i].p-spare);
+           spare=0;
+         }
+         else
+         {
+           spare+=(spare-ol[i].p);
+         }
+       }else
+         curr+=ol[i].p;
+     }
+     else
+     {
+       if(ol[i].p>curr)
+         curr+=(ol[i].p-curr);
+       else if(ol[i].p<=curr)
+       {
+         spare+=curr-ol[i].p;
+       }
+     }
+   }
+   wr.write(curr+" ");
+   wr.flush();
+   wr.close();
+  }
+}
+            
+     
+   
+   
+          
+          
+          
+      
+        
+    

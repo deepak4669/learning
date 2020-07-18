@@ -1,0 +1,66 @@
+import java.util.Scanner;
+public class EULER123
+{
+  static int f=1000000;
+  static boolean[] prime=new boolean[f+1];
+  public static preprocess()
+  {
+    Arrays.fill(prime,true);
+    prime[0]=false;
+    prime[1]=false;
+    int m=(int)Math.sqrt(f);
+    for(int i=2;i<=m;i++)
+    {
+      if(prime[i])
+      {
+        for(int j=i*i;j<=f;j+=i)
+          prime[j]=false;
+      }
+    }
+  }
+  public static NOD(long n)
+  {
+    int ans=0;
+    long aux=n;
+    for(int i=2;i<=f;i++)
+    {
+      int exp=1;
+      if(prime[i])
+      {
+        while(aux%i==0)
+        {
+          exp++;
+          aux/=i;
+        }
+        ans*=exp;
+      }
+    }
+    return ans;
+  }
+      
+          
+    
+     
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    preprocess();
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      long k=1;
+      long val=0;
+      while(true)
+      {
+        val=(k*(k+1))/2;
+        if(NOD(val)>n) break;
+        k++;
+      }
+      System.out.prinltn(val);
+    }
+  }
+}
+    
+                            
+                            

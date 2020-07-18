@@ -1,0 +1,54 @@
+import java.util.Scanner;
+public class Main476B
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    String s=sc.nextInt();
+    int plus=0;
+    int minus=0;
+    int unc=0;
+    for(int i=0;i<s.length();i++)
+    {
+      if(s.charAt(i)=='+')
+        plus++;
+      else if(s.charAt(i)=='-')
+        minus++;
+    }
+    String t=sc.next();
+    for(int i=0;i<t.length();i++)
+    {
+      if(t.charAt(i)=='+')
+        plus--;
+      else if(t.charAt(i)=='-')
+        minus--;
+      else
+        unc++;
+    }
+    if(plus<0||minus<0)
+      System.out.println(0.000);
+    else 
+    {
+      if(plus==0||minus==0)
+      {
+        double prob=1/(Math.pow(2,unc));
+        System.out.println(prob);
+      }
+      else{
+        double prob=fact(unc)/((fact(plus))*(fact(minus)));
+        prob=prob/Math.pow(2,unc);
+        System.out.println(prob);
+      }
+    }
+  }
+  public static double fact(int n)
+  {
+    double ans=1.0;
+    while(n>0)
+    {
+      ans*=n--;
+    }
+    return ans;
+  }
+}
+}

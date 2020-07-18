@@ -1,0 +1,26 @@
+import java.util.Scanner;
+public class HACKRNDM
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int k=sc.nextInt();
+    int[] a=new int[n];
+    for(int i=0;i<n;i++)
+      a[i]=sc.nextInt();
+    Arrays.sort(a);
+    int lo=0;
+    int hi=a.length-1;
+    int count =0;
+    while(hi>lo)
+    {
+      if(a[hi]-a[lo]==k)
+        count++;
+      if(a[hi]-a[lo]>=k) hi--;
+      else lo++;
+    }
+    System.out.println(count);
+  }
+}
+                     

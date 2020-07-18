@@ -1,0 +1,59 @@
+import java.util.Scanner;
+public class SPLST
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int a=sc.nextInt();
+      int b=sc.nextInt();
+      int c=sc.nextInt();
+      int x=sc.nextInt();
+      int y=sc.nextInt();
+      for(int k=0;k<=a;k++)
+      {
+        if(b+k==x&&c+a-k==y||b+k==y&&c+a-k==x)
+        {
+          flag=true;
+          break;
+        }
+      }
+      if(flag)
+      {
+        System.out.println("YES");
+        continue;
+      }
+      for(int k=0;k<=b;k++)
+      {
+        if(a+k==x&&c+b-k==y||a+k==y&&c+b-k==x)
+        {
+          flag=true;
+          break;
+        }
+      }
+      if(flag)
+      {
+        System.out.println("YES");
+        continue;
+      }
+      for(int k=0;k<=c;k++)
+      {
+        if(a+k==x&&b+c-k==y||a+k==y&&b+c-k==x)
+        {
+          flag=true;
+          break;
+        }
+      }
+      if(flag)
+      {
+        System.out.println("YES");
+        continue;
+      }
+      System.out.println("NO");
+    }
+  }
+}
+        
+      

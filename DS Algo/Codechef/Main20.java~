@@ -1,0 +1,29 @@
+import java.util.Scanner;
+import java.math.BigInteger;
+public class Main20
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    BigInteger[] res=new BigInteger[10];
+    BigInteger[] res2=new BigInteger[10];
+    for(int i=0;i<10;i++)
+    {
+      BigInteger a=sc.nextBigInteger();
+      BigInteger b=sc.nextBigInteger();
+      res[i]=ans(a,b);
+      res[2]=res[i].subtract(b);
+    }
+    for(int i=0;i<10;i++)
+    {
+      System.out.println(res[i]);
+    }
+  }
+  public static BigInteger ans(BigInteger a,BigInteger b)
+  {
+   BigInteger c=a.add(b);
+   return c.divide(BigInteger("2"));
+  }
+}
+   
+  

@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class CRDS
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t>0)
+    {
+      int n=sc.nextInt();
+      int res=0;
+      for(int i=n;i>=1;i--)
+      {
+        if(i==n)
+        {
+          res+=i*2;
+        }
+        else
+        {
+          res+=3*i;
+        }
+      }
+      System.out.println(res);
+    }
+  }
+}
+        

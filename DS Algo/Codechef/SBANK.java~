@@ -1,0 +1,29 @@
+import java.util.Scanner;
+public class SBANK
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      String[] s=new String[n];
+      for(int i=0;i<n;i++)
+        s[i]=sc.next();
+      Arrays.sort(s);
+      HashMap<String,Integer> map=new HashMap<String,Integer>();
+      for(int i=0;i<n;i++)
+      {
+        if(map.containsKey(s[i])) map.put(s[i],map.get(s[i])+1);
+        map.put(s[i],1);
+      }
+      for(String s:map)
+      {
+        System.out.println(s+" "+map.get(s));
+      }
+    }
+  }
+}
+        
+          

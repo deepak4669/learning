@@ -1,0 +1,49 @@
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+public class ShuntingYard
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    String s=sc.next();
+    
+    StringBuilder ans=new StringBuilder();
+    Stack<Character> stack=new Stack<Character>();
+    int[] val=new int[128];
+    val[(int)'+']=1;
+    val[(int)'-']=0;
+    val[(int)'*']=2;
+    val[(int)'/']=3;
+    for(int i=0;i<s.length();i++)
+    {
+      char c=s.charAt(i);
+      if(Character.isDigit(c))
+        ans.append(c);
+      else if(c=='(')
+        stack.push(c);
+      else if(c==')')
+      {
+        while(stack.size()!=0&&stack.peak()!='(')
+        {
+          ans.append(stack.pop());
+        }
+      }
+      else
+      {
+        if(stack.peak()=='('||val[c]>val[stack.peak()]||stack.size()!=0)
+          stack.push(c);
+        else{
+          while(stack.peak()!='('&&val[stack.peak()]>=val[c])
+            ans.append(stack.pop());
+          stack.push(c);
+        }
+      }
+    }
+    System.out.println(ans);
+    
+        
+          
+        
+    

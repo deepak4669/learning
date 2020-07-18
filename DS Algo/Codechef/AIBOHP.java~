@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class AIBOHP
+{
+  static String s;
+  static int[][] dp;
+  
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      s=sc.next();
+      dp=new int[s.length()][s.length()];
+      int ans=solve(0,s.length()-1);
+      System.out.println(ans);
+    }
+  }
+  public static int solve(int i,int j)
+  {
+    if(i==j) return 0;
+    else if(i<j) return 1000000000;
+    else if(dp[i][j]!=0) return dp[i][j];
+    else
+    {
+      int ans;
+      if(s.charAt(i)==s.charAt(j))
+        ans=solve(i+1,j-1);
+      else
+        ans=Math.min(solve(i,j-1),solve(i+1,j)) +1;
+      dp[i][j]=ans;
+      return ans;
+    }
+  }
+}
+      

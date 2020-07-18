@@ -1,0 +1,22 @@
+import java.lang.*;
+public class Euler65
+{
+  public static void main(String[] args)
+  {
+    int[] a=new int[101];
+    a[1]=1;
+    a[2]=2;
+    int k=2;
+    for(int i=3;i<=100;i++)
+    {
+      if(i%3==0||i%3==1)
+        a[i]=1;
+      else
+      {
+        a[i]=2*k;
+        k++;
+      }
+    }
+  }
+}
+        

@@ -1,0 +1,85 @@
+import java.util.Scanner;
+import java.util.Vector;
+public class Main277A
+{
+  public class UnionFind
+  {
+    private int[] id;
+    private int[] sz;
+    private int disjoint;
+    public UnionFind(int N)
+    {
+      id=new int[N];
+      sz=new int[N];
+      disjoint=N;
+      for(int i=0;i<N;i++)
+        id[i]=i;
+    }
+    public int find(int p)
+    {
+      if(p!=id[p])
+      {
+        id[p]=find(id[p]);
+      }
+      return id[p];
+    }
+    public boolean connected(int p,int q)
+    {
+      return find(p)==find(q);
+    }
+    public void union(int p,int q)
+    {
+      int i=find(p);
+      int j=find(q);
+      disjoint--;
+      if(i==j) return ;
+      if(sz[i]>sz[j]){
+        id[i]=j;
+        sz[j]+=sz[i];
+      }
+      else
+      {
+        id[j]=i;
+        sz[i]+=sz[j];
+      }
+    }
+    public int sets()
+    {
+      return disjoint;
+    }
+  }
+       
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int m=sc.nextInt();
+    Vector<Integer>[] a=(Vector<Integer>[]) new Vector[m+1];
+    for(int i=0;i<m+1;i++)
+      a[i]=new Vector<Integer>();
+    for(int i=1;i<=n;i++)
+    {
+      int val=sc.nextInt();
+      for(int i=0;i<val;i++)
+      {
+        int x=sc.nextInt();
+        a[x].add(i);
+      }
+    }
+    UnionFind uf=new UnionFind(n);
+    for(int i=1;i<=m;i++)
+    {
+      int v=a[i].get(0);
+      for(int w:a[i])
+      {
+        uf.union(--v,--w);
+      }
+    }
+    System.out.println(uf.sets());
+  }
+}
+    
+    
+        
+    
+    

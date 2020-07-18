@@ -1,0 +1,16 @@
+import java.io.*;
+import java.util.*;
+public class WACHOVIA
+{
+  public static void main(String[] args) throws IOException
+  {
+    Reader sc=new Reader();
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int k=sc.nextInt();
+      int n=sc.nextInt();
+      
+                         
+    
+  

@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class Main58A
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    String s=sc.next();
+    char[] ch={'h','e','l','l','o'};
+    boolean flag=false;
+    int i=0;
+    for(i=0;i<s.length();i++)
+    {
+      if(s.charAt(i)=='h') break;
+    }
+    char exp='e';
+    char prev='h';
+    int k=2;
+    for(;i<s.length();i++)
+    {
+      if(s.charAt(i)==prev)
+      {
+        continue;
+      }
+      else if(s.charAt(i)==exp)
+      {
+        if(exp=='o')
+        {
+          flag=true;
+          break;
+        }
+        prev=exp;
+        exp=ch[k++];
+      }
+      else
+        break;
+    }
+    if(exp=='o'&&flag)
+      System.out.println("YES");
+    else
+      System.out.prinltn("NO");
+  }
+}
+        
+    

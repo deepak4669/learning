@@ -1,0 +1,22 @@
+import java.util.Scanner;
+import java.math.BigInteger;
+public class GCD2
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      BigInteger a=nextBigInteger();
+      BigInteger b=nextBigInteger();
+      System.out.println(gcd(a,b));
+    }
+  }
+  public static BigInteger gcd(BigInteger a,BigInteger c)
+  {
+    if(b.equals(BigInteger.zero)) return a;
+    else return gcd(b,a%b);
+  }
+}
+      

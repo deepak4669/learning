@@ -1,0 +1,73 @@
+public class DISHOWN
+{  
+  public class QuickUnionUF//this takes linear time in worst case in all things.
+  {
+    private int[] id;
+    
+  
+    public QuickUnionUF(int N)
+    {
+      id=new int[N];
+      sz=new int[N];
+      for(int i=0;i<N;i++) id[i]=i;
+    }
+  
+    public int root(int i)
+    {
+      while(id[i]!=i)
+      {
+        i=id[i];
+      }
+      return i;
+    }
+    
+    public boolean connected(int p,int q)
+    {
+      return root(p)==root(q);
+    }
+    
+    public void union(int p,int q)
+    {
+      int i=root(p);
+      int j=root(q);
+      id[i]=j;
+    }
+  }
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    for(int i=0;i<t;i++)
+    {
+      int n=sc.nextInt();
+      QuickUnionUF u=new QuickUnionUF(n);
+      int[] s=new int[n];
+      for(int j=0;j<n;j++)
+        s[j]=sc.nextInt();
+      int q=sc.nextInt();
+      for(int j=0;j<q;j++)
+      {
+        int a=sc.nextInt();
+        if(a==0)
+        {
+          int b=sc.nextInt();
+          int c=sc.nextInt();
+          b-=1;
+          c-=1;
+          if(u.connected(b,c)){
+            System.out.println("Invalid query");
+            continue;
+          }
+          if(s[b]>s[c]) u.union(c,b);
+          else u.union(b,c);
+        }
+        else
+        {
+          int a=sc.nextInt();
+          System.out.println(u.root(--a));
+        }
+      }
+    }
+  }
+}
+        

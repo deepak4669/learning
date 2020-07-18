@@ -1,0 +1,31 @@
+import java.util.*;
+import java.io.*;
+public class COMDIV
+{
+  public static void main(String[] args) throws IOException
+  {
+    Reader sc=new Reader();
+    PrintWriter out=new PrintWriter(System.out);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int a=sc.nextInt();
+      int b=sc.nextInt();
+      int v=a>b?b:a;
+      int w=(a+b)-v;
+      int ans=0;
+      for(int i=1;i<=(int)Math.sqrt(v);i++)
+      {
+        if(v%i==0&&w%i==0)
+        {
+          ans++;
+          if(w%(v/i)==0)
+            ans++;
+        }
+      }
+      System.out.println(ans);
+    }
+  }
+}
+          
+        

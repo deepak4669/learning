@@ -1,0 +1,40 @@
+import java.util.Scanner;
+public class ACPC11B
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      int[] a=new int[n];
+      for(int i=0;i<n;i++)
+        a[i]=sc.nextInt();
+      int m=sc.nextInt();
+      int[] diff=new int[n*m];
+      int[] b=new int[m];
+      for(int i=0;i<m;i++)
+        b[i]=sc.nextInt();
+      for(int i=0;i<n;i++)
+      {
+        for(int j=0;j<m;j++)
+          diff[k++]=Math.abs(a[i]-b[j]);
+      }
+      int ans=1000000;
+      for(int i=0;i<=1000000;i++)
+      {
+        int value=Arrays.binarySearch(diff,i);
+        if(value!=-1)
+        {
+          ans=value;
+          break;
+        }
+      }
+      System.out.println(ans);
+    }
+  }
+}
+          ans=
+                        
+                        

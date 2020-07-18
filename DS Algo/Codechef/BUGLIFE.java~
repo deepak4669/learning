@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.*;
+public class BUGLIFE
+{
+  Vector<Integer>[] adj;
+  public static void main(String[] args)
+  {
+    Reader sc=new Reader();
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      adj=new Vector<Integer>[n];
+      for(int i=0;i<n;i++)
+        adj[i]=new Vector<Integer>();
+      int m=sc.nextInt();
+      for(int i=0;i<m;i++)
+      {
+        int a=sc.nextInt();
+        int b=sc.nextInt();
+        adj[--a].add(--b);
+      }
+      for(int i=0;i<n;i++)
+      {
+        if(cn
+      

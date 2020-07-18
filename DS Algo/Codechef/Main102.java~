@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class Main102
+{
+  public static void main(String[] args)
+  {
+    String[] bin={"BCG","BGC","CBG","CGB","GBC","GCB"};
+    Scanner sc=sc.nextInt();
+    while(sc.hasNextInt())
+    {
+      int[] a=new int[9];
+      
+      for(int i=0;i<9;i++)
+        a[i]=sc.nextInt();
+      int min=a[1]+a[2]+a[3]+a[5]+a[6]+a[7];
+      
+      String ans=bin[0];
+      for(int i=1;i<6;i++)
+      {
+        String s=bin[i];
+        int p=s.indexOf("B");
+        int q=s.indexOf("C")+3;
+        int r=s.indexOf("G")+6;
+        int sum=(a[0]+a[1]+a[2]+a[3]+a[4]+a[5]+a[6]+a[7]+a[8]+a[9])-a[p]-a[q]-a[r];
+        if(sum<min){
+          ans=s;
+          min=sum;
+        }
+      }
+      System.out.println(ans+" "+min);
+    }
+  }
+}
+        
+        
+      
+      

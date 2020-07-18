@@ -1,0 +1,43 @@
+public class EULER55
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int cnt=0;
+    for(int i=11;i<=10000;i++)
+    {
+      if(lychrel(i))
+        cnt++;
+    }
+    System.out.println(cnt);
+  }
+  public static String reverse(String s)
+  {
+    String t="";
+    for(int i=s.length()-1;i>=0;i--)
+    {
+      t+=s.charAt(i);
+    }
+    return t;
+  }
+  public static boolean lychrel(int a)
+  {
+    int cnt=0;
+    for(int i=0;i<50;i++)
+    {
+      
+      String s=a+"";
+      String t=reverse(s);
+      int x=Integer.parseInt(s)+Integer.parseInt(t);
+      String st=x+"";
+      
+      if(st.equals(reverse(st)))
+        return false;
+    }
+    return true;
+  }
+}
+   
+    
+    
+    

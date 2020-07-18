@@ -1,0 +1,80 @@
+public class InterviewBit {
+    
+    public int maxSpecialProduct(ArrayList<Integer> A) {
+        long[] left=new long[A.size()];
+        long[] right=new long[A.size()];
+        left[0]=0;
+        right[0]=0;
+        int n=A.size();
+        int max=A.get(0);
+        int maxid=1;
+        for(int i=1;i<n;i++)
+        {
+            if(A.get(i)<max)
+            {
+                left[i]=maxid;
+            }
+            else
+            {
+                left[i]=0;
+                max=A.get(i);
+                maxid=i+1;
+            }
+            
+        }
+        max=A.get(A.size()-1);
+        maxid=A.size();
+        
+        for(int i=A.size()-2;i>=0;i--)
+        {
+            if(A.get(i)<max)
+            {
+                right[i]=maxid;
+            }
+            else
+            {
+                right[i]=0;
+                maxid=i;
+                max=A.get(i);
+            }
+            
+            
+        }
+        int ans=0;
+        for(int i=0;i<n;i++)
+        {
+          
+            System.out.println(left[i]);
+            System.out.println(right[i]);
+          
+          
+            if(left[i]*right[i]>ans)
+            {
+                ans=(int)(left[i]*right[i]);
+            }
+        }
+        
+        
+        
+        
+        
+        
+        return ans;
+    }
+    public static void main(String[] args)
+    {
+      Scanner sc=new Scanner(System.in);
+      int[] a=new int[n];
+      for(int i=0;i<n;i++)
+      {
+        a[i]=sc.nextInt();
+      }
+      
+          
+        
+}
+        
+        
+        
+        
+        

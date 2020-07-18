@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class BSHUFFLE3
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    String p1="";
+    String p2="";
+    if(n==2)
+    {
+      p1="12";
+      p2="12";
+    }
+    else if(n==3)
+    {
+      p1="132";
+      p2="123";
+    }
+    else if(n==4)
+    {
+      p1="2143";
+      p2="4123";
+    }
+    else
+    {
+      p2=n+"";
+      for(int i=1;i<=n-1;i++)
+        p2+=i+"";
+      p1=ans(n);
+    }
+    for(int i=0;i<n;i++)
+      System.out.print(p1.charAt(i)+" ");
+    System.out.println();
+    for(int i=0;i<n;i++)
+      System.out.print(p2.charAt(i)+" ");
+    
+      
+  }
+  static String ans(int n)
+  {
+    
+}
+      

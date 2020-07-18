@@ -1,0 +1,62 @@
+public class PriorityQueue
+{
+  
+  public class MaxPQ
+  {
+    public int[] pq;
+    public int N;
+    
+    public MaxPQ(int[] a)
+    {
+      this.N=0;
+      pq=new int[a.length+1];
+      for(int i=1;i<=a.length;i++)
+      {
+        insert(a[i-1]);
+      }
+    }
+    public void swim(int k)
+    {
+      while(k>1&&less(k/2,k))
+      {
+        exch(k,k/2);
+        k/=2;
+      }
+    }
+    public void exch(int i,int j)
+    {
+      int temp=pq[i];
+      pq[i]=temp;
+      pq[j]=temp;
+    }
+    public  boolean less(int i,int j)
+    {
+      return pq[i]<pq[j];
+    }
+    public void insert(int x)
+    {
+      pq[++N]=x;
+      swim(N);
+    }
+    public void sink(int k)
+    {
+      while(2*k<=N)
+      {
+        int j=2*k;
+        if(j<N&&less(j,j+1)) j++;
+        if(!less(k,j)) break;
+        exch(k,j);
+        k=j;
+      }
+    }
+    public int delMax()
+    {
+      int max=pq[1];
+      exch(1,N--);
+      sink(1);
+      return max;
+    }
+  }}
+              
+      
+         

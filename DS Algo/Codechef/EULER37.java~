@@ -1,0 +1,66 @@
+import java.util.Scanner;
+public class EULER37
+{
+  static int n=1000000;
+  static boolean[] prime=new boolean[n+1];
+  static void preprocess()
+  {
+    Arrays.fill(prime,true);
+    prime[0]=false;
+    prime[1]=false;
+    int m=(int)Math.sqrt(n);
+    for(int i=2;i<=m;i++)
+    {
+      if(prime[i])
+      {
+        for(int j=i*i;j<=n;j+=i)
+        {
+          prime[j]=false;
+        }
+      }
+    }
+  }
+      
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    preprocess();
+    int cnt=0;
+    long ans=0;
+    for(int i=10;i<=10000000;i++)
+    {
+      if(prime[i])
+      {
+        String s=i+"";
+        for(int i=1;i<s.length();i++)
+        {
+          if(!prime[Integer.parseInt(s.substring(i,s.length()))])
+          {
+            flag=false;
+            break;
+          }
+        }
+        if(flag)
+        {
+          for(int i=s.length();i>0;i--)
+          {
+            if(!prime[Integer.parseInt(s.substring(0,i))])
+            {
+              flag=false;
+              break;
+            }
+          }
+        }
+        if(flag)
+        {
+          cnt++;
+          ans+=i;
+        }
+      }
+    }
+    System.out.prinltn(cnt+" "+ans);
+  }
+}
+          
+        
+    

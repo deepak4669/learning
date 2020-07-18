@@ -1,0 +1,40 @@
+import java.util.Scanner;
+import java.util.*;
+public class TDPRIMES
+{
+  static int n=100000000;
+  static boolean[] prime=new boolean[n+1];
+  Vector<Integer> p=new Vector<Integer>();
+  public static void preprocess()
+  {
+    Arrays.fill(prime,true);
+    prime[0]=false;
+    int m=(int)Math.sqrt(n);
+    for(int i=2;i<=m;i++)
+    {
+      if(prime[i])
+      {
+        p.add(i);
+        for(int j=i*i;j<=n;j+=i)
+        {
+          prime[j]=false;
+        }
+      }
+    }
+  }
+                                
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    preprocess();
+    int k=0;
+    int val=p.get(0);
+    while(val<=n)
+    {
+      val=p.get(k);
+      System.out.println(val);
+      k+=100;
+    }
+  }
+}
+    

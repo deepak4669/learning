@@ -1,0 +1,40 @@
+import java.util.*;
+import java.io.*;
+public class NINJA4
+{
+  public static void main(String[] args)
+  {
+    Reader sc=new Reader();
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      if(n==0){
+        System.out.println(0+" "+0);
+      }
+      else if(n==1){
+        System.out.println(1+" "+0);
+      }
+      else
+      {
+        int a=n%4;
+        if(n==0)
+        {
+          System.out.println(-Math.pow(2,n/4)+" "+(-Math.pow(2,n/4)));
+        }
+        if(n==1)
+        {
+          System.out.println((1+(n/4)*2)+" "+(-Math.pow(2,n/4+1)));
+        }
+        if(n==2)
+        {
+          System.out.println((1+(n/4)*2)+" "+(Math.pow(2,(n+2)/4)));
+        }
+        if(n==3)
+        {
+          System.out.println((-Math.pow(2,(n+1)/4)+" "+Math.pow(2,(n+1)/4)));
+        }
+      }
+    }
+  }
+}

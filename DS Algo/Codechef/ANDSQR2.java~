@@ -1,0 +1,67 @@
+import java.util.*;
+public class ANDSQR2
+{
+  static int[] A;
+  static int[][] st;
+  static int q;
+  static int n;
+  
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      n=sc.nextInt();
+      A=new int[n];
+      q=sc.nextInt();
+      for(int i=0;i<n;i++)
+        A[i]=sc.nextInt();
+      precompute();
+      for(int i=0;i<q;i++)
+      {
+        int lo=sc.nextInt();
+        int ro=sc.nextInt();
+        int count=0;
+        for(int i=lo-1;i<=ro-1;i++)
+        {
+          for(int j=i;j<=ro-1;j++)
+          {
+            if(st[lo][ro]==1)
+              count++;
+          }
+        }
+        System.out.println(count);
+      }
+    }
+  }
+  public static void precompute()
+  {
+    int col=Math.ceil(Math.log(n)/Math.log(2))+1;
+    st[][]=new int[n][col];
+    for(int i=0;i<n;i++)
+      st[i][0]=A[i];
+    for(int j=1;j<=k;j++)
+    {
+      for(int i=0;i+(1<<j)<=n;i++)
+      {
+        st[i][j]=func(st[i][j-1],st[i+(1<<(j-1))][j-1]);
+      }
+    }
+  }
+  public static int func(int a, int b)
+  {
+    if(perfect(a&b))
+      return 1;
+    else
+      return 0;
+  }
+  public static boolean perfect(int c)
+  {
+    int d=(int)Math.sqrt(c);
+    if(d*d==c) return true;
+    else return false;
+  }
+}
+                      
+      

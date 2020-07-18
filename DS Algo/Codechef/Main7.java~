@@ -1,0 +1,28 @@
+import java.util.Scanner;
+public class Main7
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    int[] res=new int[t];
+    for(int i=0;i<t;i++)
+    {
+      int a=sc.nextInt();
+      res[i]=sumDivisor(a);
+    }
+    for(int i=0;i<t;i++)
+    {
+      System.out.println(res[i]);
+    }
+  }
+  public static int sumDivisor(int a)
+  {
+    int res=0;
+    for(int i=1;i<=Math.sqrt(a);i++)
+    {
+      if(a%i==0) res+=i;
+    }
+    return res;
+  }
+}

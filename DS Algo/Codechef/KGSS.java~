@@ -1,0 +1,109 @@
+import java.util.*;
+import java.io.*;
+
+public class KGSS
+{
+  static int[] array;
+  
+  public static class SegmentTree{
+    
+    public Node[] heap;
+    
+    private int getsize(int N){
+      int size=1;
+      for(;size<N;size<<=1);
+      return size<<1;
+    }      
+    public SegmentTree(int[] a){
+      int size = getsize(a.length);
+      heap=new Node[size];
+      build(a,1,0,a.length-1);
+    }
+    private void build(int[] a,int v,int lo, int hi){      
+      heap[v]=new Node();
+      if(lo==hi){
+        heap[v].assignValue(a[lo]);
+        return;
+      }                   
+      int left=2*v;
+      int right=left+1;
+      int mid=((lo+hi)/2);
+      build(a,left,lo,mid);
+      build(a,right,mid+1,hi);
+      heap[v].merge(heap[2*v],heap[2*v+1]);
+    }
+    public int rsq(int from,int to){
+      Node result= rsq(1,0,array.length-1,from-1,to-1);
+      return result.getValue();
+    }
+    private Node rsq(int v,int lo,int hi,int from, int to){
+      if(lo==from&&hi==to)
+        return heap[v];      
+      int mid=(lo+hi)/2;
+      if(from>mid)return rsq(2*v+1,mid+1,hi,from,to);        
+      if(to<=mid)return rsq(2*v,lo,mid,from,to);        
+      Node leftResult=rsq(2*v,lo,mid,from,mid);
+      Node rightResult=rsq(2*v+1,mid+1,hi,mid+1,to);
+      Node result=new Node();
+      result.merge(leftResult,rightResult);
+      return result;
+    }        
+    public class Node{
+      public int maxSum,secondMax;      
+      public void assignValue(int x){
+        maxSum=x;
+        secondMax=-1;
+      }
+      public void merge(Node left, Node right){
+        maxSum=Math.max(left.maxSum,right.maxSum);
+        secondMax=Math.min(Math.max(left.maxSum,right.secondMax),Math.max(left.secondMax,right.maxSum));
+      }
+      public int getValue()
+      {
+        return maxSum+secondMax;
+      }
+    }
+    public void update(int index, int value){
+      update(1,0,array.length-1,index-1,value);}
+    private void update(int v,int lo,int hi,int index,int value){
+      if(lo==hi){
+        heap[v].assignValue(value);return;}            
+      int left=2*v;
+      int right=left+1;
+      int mid=(lo+hi)/2;
+      if(index<=mid)
+        update(left,lo,mid,index,value);
+      else
+        update(right,mid+1,hi,index,value);
+      heap[v].merge(heap[left],heap[right]);}}
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    array=new int[n];
+    for(int i=0;i<n;i++)
+      array[i]=sc.nextInt();
+    SegmentTree tree=new SegmentTree(array);
+    int m=sc.nextInt();
+    while(m>0)
+    {
+      String s=sc.next();
+      if(s.equals("U")){
+        int a =sc.nextInt();
+        int b=sc.nextInt();
+        tree.update(a,b);
+      }
+      else{
+        int a=sc.nextInt();
+        int b=sc.nextInt();
+        System.out.println(tree.rsq(a,b));
+      }
+      m--;
+    }
+  }
+}
+    
+                         
+      
+    
+      

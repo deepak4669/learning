@@ -1,0 +1,29 @@
+import java.util.Scanner;
+public class Main112A
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    String s=sc.next();
+    String s2=sc.next();
+    int i;
+    assert s.length()==s2.length();
+    for(i=0;i<s.length();i++)
+    {
+      Character ch1=Character.toLowerCase(s.charAt(i));
+      Character ch2=Character.toLowerCase(s2.charAt(i));
+      if(ch1.compareTo(ch2)<0)
+      {
+        System.out.println("-1");
+        break;
+      }
+      else if(ch1.compareTo(ch2)>0)
+      {
+        System.out.println("1");
+        break;
+      }
+    }
+    if(i==s.length()) System.out.println("0");
+  }
+}
+        

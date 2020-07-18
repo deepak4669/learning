@@ -1,0 +1,96 @@
+import java.util.*;
+import java.io.*;
+public class BITMAP2
+{
+  static int[][] distance;
+  public static class multiSet
+  {
+    int i;
+    int j;
+    public multiSet(int x, int y)
+    {
+      this.i=x;
+      this.j=y;
+    }
+    
+  }
+  public static Stack<multiSet> adj(multiSet v)
+  {
+    Stack<multiSet> stack=new Stack<multiSet>();
+    stack.push(new multiSet(v.i-1,v,j));
+    stack.push(new multiSet(v.i+1,v.j));
+    stack.push(new multiSet(v.i,v.j-1));
+    stack.push(new multiSet(v.i,v.j+1));
+    return stack;
+  }
+  public static boolean isValid(multiSet v)
+  {
+    return 0<=v.i&&v.i<n&&0<=v.j&&v.j<m?true:false;
+  }
+     
+  
+  public static void main(String[] args) throws IOException
+  {
+    Reader sc=new Reader();
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      int m=sc.nextInt();
+      String[] s=new String[n];
+      Queue<multiSet> q=new LinkedList<multiSet>();
+      distance=new int[n][m];
+      for(int i=0;i<n;i++)
+        s[i]=sc.next();
+      for(int i=0;i<n;i++)
+      {
+        for(int j=0;j<m;j++)
+        {
+          if(s[i].charAt(j)=='0')
+            distance[i][j]=1000000000;
+          else{           
+            distance[i][j]=0;
+            q.add(new multiSet(i,j));
+          }
+        }
+      }
+      boolean[] marked=new boolean[n][m];
+      int k=1;
+      while(!q.isEmpty())
+      {
+        
+        multiSet v=q.dequeue();
+        if(s[v.i].charAt(v.j)=='1')
+        {
+          marked=new boolean[n][m];
+          k=1;
+        }
+        for(multiSet s:adj(v))
+        {
+          if(isValid(s)&&!marked[s.i][s.j]&&s[i].charAt(j)!='1')
+          {
+            
+            q.enqueue(s);
+            marked[s.i][s.j]=true;
+            if(distance[s.i][s.j]>k) distance[s.i][s.j]=k;
+          }
+        }
+        k++;
+      }
+      for(int i=0;i<n;i++)
+      {
+        for(int j=0;j<m;j++)
+        {
+          System.out.print(distance[i][j]);
+        }
+        System.out.println();
+      }
+      
+            
+      
+    }
+  }
+}
+      
+          
+    

@@ -1,0 +1,23 @@
+import java.util.Scanner;
+public class EULER44
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    long ans=0;
+    for(int i=1;;i++)
+    {
+      long n=(i*(3*i-1))/2;
+      for(int j=i;j>0;j--)
+      {
+        long m=(j*(3*j-1))/2;
+        if(pentagonal(n+m)&&pentagonal(n-m))
+        {
+          ans=n-m;
+          break;
+        }
+      }
+    }
+    System.out.println(ans);
+  }
+}

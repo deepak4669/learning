@@ -1,0 +1,32 @@
+import java.util.Scanner;
+public class Main272C
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int[] a=new int[n];
+    for(int i=0;i<n;i++)
+      a[i]=sc.nextInt();
+    int m=sc.nextInt();
+    int[] res=new int[m];
+    int prev=0;
+    int hprev=0;
+    for(int i=0;i<m;i++)
+    {
+      int w1==sc.nextInt();
+      int h1=sc.nextInt();
+      res[i]=Math.max(prev+hprev,a[w1-1]);
+      prev=res[i];
+      hprev=h1;
+    }
+    for(int i=0;i<m;i++)
+    {
+      System.out.println(res[i]);
+    }
+  }
+}
+
+      
+      
+      

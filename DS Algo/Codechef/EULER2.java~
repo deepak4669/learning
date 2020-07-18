@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class EULER2
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      long n=sc.nextLong();
+      long i=1;
+      long sum=0;
+      long k=fib(i);
+      while(k<=n)
+      {
+        k=fib(i++);
+        if(k%2==0) sum+=k;
+      }
+      System.out.println(sum);
+    }
+  }
+}

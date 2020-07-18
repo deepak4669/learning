@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class EULER321
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int ans=0;
+    for(int i=1;i<=99;i++)
+    {
+      for(int j=100;j<=999;j+=)
+      {
+        int k=i*j;
+        String s=i+""+j+""+k;
+        if(check(s))
+          sum+=k;
+      }
+    }
+    System.out.println(sum);
+  }
+  public static boolean check(String s)
+  {
+    boolean[] a=new boolean[10];
+    for(int i=0;i<n;i++)
+    {
+      a[Integer.parseInt(s.substring(i,i+1))]=true;
+    }
+    for(int i=1;i<=9;i++)
+    {
+      if(!a[i])
+        return false;
+    }
+    return true;
+  }
+}
+        
+  

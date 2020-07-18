@@ -1,0 +1,57 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class Main433B
+{
+  static int[] a;
+  static int[] b;
+  static long[] prefix;
+  static long[] prefix_sorted;
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    a=new int[n];
+    b=new int[n];
+    for(int i=0;i<n;i++)
+    {
+      a[i]=sc.nextInt();
+      b[i]=a[i];
+    }
+    Arrays.sort(b);
+    preprocess();
+    int m=sc.nextInt();
+    long[] ans=new long[m];
+    for(int i=0;i<m;i++)
+    {
+      int choice=sc.nextInt();
+      int lo=sc.nextInt();
+      int ro=sc.nextInt();
+      if(choice==1)
+      {
+        ans[i]=prefix[ro-1]-prefix[lo-1]+a[lo-1];
+      }
+      else
+      {
+        ans[i]=prefix_sorted[ro-1]-prefix[lo-1]+b[lo-1];
+      }
+    }
+    for(int i=0;i<m;i++)
+      System.out.println(ans[i]);
+  }
+  public static void preprocess()
+  {
+    prefix=new long[n];
+    prefix[0]=a[0];
+    for(int i=1;i<a.length;i++)
+    {
+      prefix[i]=prefix[i-1]+a[i];
+    }
+    prefix_sorted=new long[n];
+    prefix_sorted[0]=b[0];
+    for(int i=1;i<b.length;i++)
+    {
+      prefix_sorted[i]=prefix_sorted[i-1]+b[i];
+    }
+  }
+      
+}

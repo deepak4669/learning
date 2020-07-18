@@ -1,0 +1,141 @@
+import java.util.*;
+import java.io.*;
+
+class YODANESS
+{
+  static PrintWriter out=new PrintWriter(System.out);
+  static int[] BIT;
+  static int N=30000;
+  
+  public static void update(int x,int val)
+  {
+    for(int i=x;i<=N;i+=(i&-i))
+      BIT[i]+=val;
+  }
+  public static int query(int x)
+  {
+    int result=0;
+    for(int i=x;i>0;i-=(i&-i))
+      result+=BIT[i];
+    return result;
+  }
+  
+  
+  public static void main(String[] args) throws IOException
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      int[] a=new int[n];
+      BIT=new int[N];
+      HashMap<String, Integer> map=new HashMap<String,Integer>();
+      String[] s2=new String[n];
+      for(int i=0;i<n;i++)
+      {
+        s2[i]=sc.next();
+      }
+      for(int i=0;i<n;i++)
+      {
+        String temp=sc.next();
+        map.put(temp,i+1);
+      }
+      for(int i=0;i<n;i++)
+      {
+        a[i]=map.get(s2[i]);
+      }
+      long ans=0;
+      for(int i=n-1;i>=0;i--)
+      {
+        ans+=query(a[i]-1);
+        update(a[i],1);
+      }
+      out.println(ans);
+      out.flush();
+    }
+    
+      
+    
+        
+    
+  }
+  static class Scanner
+  {
+    BufferedReader br;
+    StringTokenizer tk=new StringTokenizer("");
+    public Scanner(InputStream is) 
+        {
+      br=new BufferedReader(new InputStreamReader(is));
+    }
+        public int nextInt() throws IOException
+        {
+          if(tk.hasMoreTokens())
+                return Integer.parseInt(tk.nextToken());
+          tk=new StringTokenizer(br.readLine());
+          return nextInt();
+        }
+        public long nextLong() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return Long.parseLong(tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return nextLong();
+        }
+        public String next() throws IOException
+        {
+          if(tk.hasMoreTokens())
+            return (tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return next();
+        }
+        public String nextLine() throws IOException
+        {
+          tk=new StringTokenizer("");
+          return br.readLine();
+        }
+        public double nextDouble() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return Double.parseDouble(tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return nextDouble();
+        }
+        public char nextChar() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return (tk.nextToken().charAt(0));
+            tk=new StringTokenizer(br.readLine());
+            return nextChar();
+        }
+        public int[] nextIntArray(int n) throws IOException
+        {
+            int a[]=new int[n];
+            for(int i=0;i<n;i++)
+              a[i]=nextInt();
+            return a;
+        }
+        public long[] nextLongArray(int n) throws IOException
+        {
+          long a[]=new long[n];
+            for(int i=0;i<n;i++)
+              a[i]=nextLong();
+            return a;
+        }
+        public int[] nextIntArrayOneBased(int n) throws IOException
+        {
+          int a[]=new int[n+1];
+            for(int i=1;i<=n;i++)
+              a[i]=nextInt();
+            return a;
+        }
+        public long[] nextLongArrayOneBased(int n) throws IOException
+        {
+          long a[]=new long[n+1];
+          for(int i=1;i<=n;i++)
+                a[i]=nextLong();
+          return a;
+        }
+  }
+}
+

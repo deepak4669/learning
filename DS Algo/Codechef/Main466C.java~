@@ -1,0 +1,66 @@
+import java.util.Scanner;
+public class Main466C
+{
+  static long[] sum;
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int[] a=new int[n];
+    int sum=0;
+    for(int i=0;i<n;i++)
+    {
+      a[i]=sc.nextInt();
+      sum+=a[i];
+    }
+    if(sum%3!=0)
+    {
+      System.out.println(0);
+    }
+    else     
+    {
+      sum=sum/3;
+      int[] cnt=new int[n];
+      int[] sums=new int[n];
+      preprocess(cnt,sums,sum,a);
+      long value=0;
+      int ans=0;
+      for(int i=0;i<n;i++)
+      {
+        value+=a[i];
+        if(value==sum)
+        {
+          ans+=sums[i+1];
+        }
+      }
+      System.out.println(ans);
+    }
+  }
+  public static void preprocess(int[] cnt,int[] sums,long sum,int a)
+  {
+    
+    long s=3*sum; 
+    long current=a[0];
+    long cnt_sum=0;
+    for(int i=1;i<n;i++)
+    {
+      if((s-current)==sum)
+        cnt[i]=1;
+      current+=a[i];
+      cnt_sum+=cnt[i];
+    }
+    current=0;
+    for(int i=1;i<n;i++)
+    {
+      sums[i]=cnt_sum-current;
+      current+=cnt[i];
+    }
+  }
+      
+      
+      
+      
+    
+  
+         
+      

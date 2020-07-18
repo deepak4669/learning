@@ -1,0 +1,43 @@
+import java.util.Scanner;
+public class NY10A
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    for(int k=0;k<t;k++)
+    {      
+      int n=sc.nextInt();
+      sc.nextLine();
+      String s=nextLine();
+      int[] res=new int[8];
+      //char[] ch=s.toCharArray();
+      for(int i=0;i<(s.length()-2);i++)
+      {
+        String w=s.substring(i,i+2);
+        if(w=="TTT")
+          res[0]++;
+        else if(w=="TTH")
+          res[1]++;
+        else if(w=="THT")
+          res[2]++;
+        else if(w=="THH")
+          res[3]++;
+        else if(w=="HTT")
+          res[4]++;
+        else if(w=="HTH")
+          res[5]++;
+        else if(w=="HHT")
+          res[6]++;
+        else if(w=="HHH")
+          res[7]++;
+      }
+      System.out.print(k+" ");
+      for(int i=0;i<8;i++)
+        System.out.println(res[i]+" ");
+    }
+  }
+}
+          
+      
+            

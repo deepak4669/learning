@@ -1,0 +1,33 @@
+import java.util.*;
+import java.io.*;
+
+public class MAGICHF
+{
+  public static void main(String[] args) throws IOException
+  {
+    PrintWriter out=new PrintWriter(System.out);
+    Reader sc=new Reader();
+    int t=sc.nextInt();
+    
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      int x=sc.nextInt();
+      int s=sc.nextInt();
+      for(int i=0;i<s;i++)
+      {
+        int a=sc.nextInt();
+        int b=sc.nextInt();
+        
+        if(a==x)
+          x=b;
+        else if(b==x)
+          x=a;
+        else
+          continue;
+      }
+      out.println(x);
+      out.flush();
+    }
+  }
+}

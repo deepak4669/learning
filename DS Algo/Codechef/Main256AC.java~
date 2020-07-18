@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class Main256AC
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    String[][] memo=new String[4][];
+    memo[0][]={"00","01","81"};
+    memo[1][]={"0000","0001","2025","3025","9801"};
+    memo[2][]={"000000","000001","088209","494209","998001"};
+    memo[3][]={"00000000", 
+      "00000001", 
+      "04941729",
+      "07441984", 
+      "24502500", 
+      "25502500",
+      "52881984", 
+      "60481729", 
+      "99980001"};
+    while(sc.hasNextInt())
+    {
+      int n=sc.nextInt();
+      for(int i=0;i<k[n/2-1];i++)
+        System.out.println(memo[n/2-1][i]);
+    }
+  }
+}

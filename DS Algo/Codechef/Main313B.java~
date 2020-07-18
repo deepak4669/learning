@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class Main313B
+{
+  static int[] prefix;
+  static String s;
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    
+    s=sc.next();
+    prefix=new int[s.length()+1];
+    preprocess();
+    int m=sc.nextInt();
+    for(int i=0;i<n;i++)
+    {
+      int l=sc.nextInt();
+      int r=sc.nextInt();
+      System.out.println(prefix[r]-prefix[l+1]);
+    }
+  }
+  public static void preprocess()
+  {
+    for(int i=1;i<s.length();i++)
+    {
+      if(s.charAt(i)==s.charAt(i-1))
+      {
+        prefix[i+1]=prefix[i]+1;
+      }
+      else
+        prefix[i+1]=prefix[i];
+    }
+  }
+}
+    
+  

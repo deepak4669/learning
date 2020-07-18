@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class PINS
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      if(n==1)
+      {
+        System.out.println(1+" "+1);
+        continue;
+      }
+      else
+      {
+        if(n%2==0)
+        {
+          System.out.println(1+" "+Math.pow(10,n/2));
+        }
+        else
+        {
+          System.out.println(1+" "+Math.pow(10,n/2-1));
+        }
+      }
+    }
+  }
+}
+   

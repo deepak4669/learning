@@ -1,0 +1,26 @@
+import java.util.Scanner;
+public class Main43A
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    String s1=sc.next();
+    int t_s1=1;
+    String s2="";
+    int t_s2=0;
+    for(int i=1;i<n;i++)
+    {
+      String s=sc.next();
+      if(s.equals(s1))
+        t_s1++;
+      else{
+        if(t_s2==0) s2+=s;
+        t_s2++;
+      }
+    }
+    if(t_s1>t_s2) System.out.println(s1);
+    else System.out.println(s2);
+  }
+}
+        

@@ -1,0 +1,45 @@
+import java.util.Scanner;
+public class SPELLBOB
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      String up=sc.next();
+      String down=sc.next();
+      int b=2;
+      int o=1;
+      int count=0;
+      boolean flag=true;
+      for(int i=0;i<3;i++)
+      {
+        char a=up.charAt(i);
+        char b=down.charAt(i);
+        if(a!='b'||a!='o'||b!='b'||b!='o')
+        {
+          flag=false;
+          break;
+        }
+        if(a=='b'&&b=='o'||a=='o'&&b=='o')
+        {
+          count++;
+          continue;
+        }
+        if(a=='b'||b=='b') b--;
+        if(a=='o'||b=='o') o--;
+      }
+      if(!flag) System.out.println("no")
+      else if(o==0&&b==0&&flag) System.out.println("yes");
+      else if(count>0)
+      {
+        if(Math.abs(o)+Math.abs(b)-count==0) System.out.println("yes");
+        else System.out.println("no");
+      }
+      else System.out.println("no");
+    }
+  }
+}
+      
+      

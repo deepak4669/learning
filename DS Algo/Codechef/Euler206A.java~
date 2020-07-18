@@ -1,0 +1,64 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Euler206A
+{
+  public static void main(String[] args)
+  {
+    int[] a=new int[8];
+    a[0]=1;
+    a[7]=3;
+    String ans="";
+    boolean found=false;
+    for(int x1=0;x1<=9;x1++)
+    {
+      for(int x2=0;x2<=9;x2++)
+      {
+        for(int x3=0;x3<=9;x3++)
+        {
+          for(int x4=0;x4<=9;x4++)
+          {
+            for(int x5=0;x5<=9;x5++)
+            {
+              for(int x6=0;x6<=9;x6++)
+              {
+                a[1]=x1;
+                a[2]=x2;
+                a[3]=x3;
+                a[4]=x4;
+                a[5]=x5;
+                a[6]=x6;
+                long x=Long.parseLong(a.toString());
+                String y=(x*x)+"";
+                int k=1;
+                boolean flag=true;
+                for(int i=0;i<y.length();i+=2)
+                {
+                  if(y.charAt(i)!=k)
+                  {
+                    flag=false;
+                    break;
+                  }
+                  k++;
+                }
+                if(flag)
+                {
+                  found=true;
+                  ans=y;
+                  break;
+                }
+                
+              }
+              if(found)
+                break;
+            }
+          }
+        }
+      }
+    }
+    System.out.println(ans);
+    
+  }
+}
+  

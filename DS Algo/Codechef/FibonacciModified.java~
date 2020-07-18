@@ -1,0 +1,27 @@
+import java.util.Scanner;
+import java.util.HashMap;
+public class FibonacciModified
+{
+  static HashMap<Integer,Long> map=new HashMap<Integer,Long>();
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t1=sc.nextInt();
+    int t2=sc.nextInt();
+    int n=sc.nextInt();
+    long ans=fib(t1,t2,n);
+    System.out.println(ans);
+  }
+  public static long fib(int t1,int t2,int n)
+  {
+    if(map.containsKey(n)) return map.get(n);
+    if(n==1) return t1;
+    if(n==2) return t2;
+    long ans=fib(t1,t2,n-1)*fib(t1,t2,n-1)+fib(t1,t2,n-2);
+    map.put(n,ans);
+    return ans;
+  }
+}
+
+    
+    

@@ -1,0 +1,44 @@
+import java.util.*;
+import java.io.*;
+public class PTO7ZAC
+{
+  static Vector<Integer>[] adj;
+  static int[] marked;
+  static int[] pow;
+  public static void main(String[] args)
+  {
+    Reader sc=new Reader();
+    int n=sc.nextInt();
+    adj=(Vector<Integer>[]) new Vector[n];
+    for(int i=0;i<n;i++)
+      adj[i]=new Vector<Integer>();
+    for(int i=0;i<n-1;i++)
+    {
+      int v=sc.nextInt();
+      int w=sc.nextInt();
+      --v;
+      --w;
+      adj[v].add(w);
+      adj[w].add(v);
+    }
+    marked=new boolean[n];
+    pow=new int[n];
+    dfs(0);
+    Arrays.sort(pow);
+    System.out.println(pow[n-1]+pow[1]);
+  }
+   public static void dfs(int v,int prev)
+  {
+    marked[v]=true;
+    
+    for(int w:adj[v])
+    {
+      if(!marked[w])
+      {
+        pow[w]=pow[v]+1;
+        dfs(w,pow[w]);
+      }
+    }
+  }
+}
+    

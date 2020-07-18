@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class ARITH2
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      //String a=" ";
+      long ans=sc.nextLong();
+      String a=sc.next();
+      while(true)
+      {        
+        
+        long w=sc.nextLong();
+        
+        if(a.equals("+")) ans+=w;
+        else if(a.equals("-")) ans-=w;
+        else if(a.equals("*")) ans*=w;
+        else if(a.equals("/")) ans/=w;
+        else break;
+        
+        a=sc.next();
+      }
+      System.out.println(ans);
+    }
+  }
+}
+        
+     

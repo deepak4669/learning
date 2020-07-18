@@ -1,0 +1,175 @@
+/**
+ * Segment Tree Data Structure
+ * With Lazy Propagation
+ * Which means when we perform update operations over a
+ * range, the update process affects the least nodes as
+ * possible so that the bigger the range you want to update
+ * the less time it takes to update it. Eventually those 
+ * changes will be propagated to the children and the whole
+ * array will be up to date.
+ */
+    
+
+
+import java.util.Arrays;
+
+public class SegmentTree{
+  
+  private Node[] heap;//Seg Tree is similar to Heaps as the Parent's range is bigger than both children.
+  
+  private int[] array;//The array whose SegTree is to be constructed.
+  private int size;// Size of the the array.
+  
+  public SegmentTree(int[] array)
+  {
+    this.array=Arrays.copyOf(array,array.length);
+    
+/* The number of nodes in the Segment Tree is (2*N-1)
+ * where N is the number of elements in 'array' and 
+ * N is the power of two. But we start indexing for
+ * constructing Segment Tree at 1 so we need Segment
+ * treeArray of size 2*N.
+ * When N is not the power of 2 the Segment Tree arry
+ * is 2*(2^(log2N+1)(2 times 2^x such that 2^x>N) 
+ */
+    
+    
+       
+    size=(int)(2*Math.pow(2.0,Math.floor((Math.log((double) array.length/(Math.log(2.0))+1)))));//
+    heap=new Node[size];// Segment Tree Array
+    build(1,0,array.length);
+  }
+  
+  public int size()
+  {
+    return array.length;
+  }
+  
+  public void build(int v,int from,int size)
+  {
+    heap[v]=new Node();//Indexing 1
+    heap[v].from=from;//Starting Bound
+    heap[v].to=from+size-1;//Ending Bound
+    
+    if(size==1){//Single Element the the last leaves
+      heap[v].sum=array[from];
+      heap[v].sum=array[from];
+    }
+    else{
+      build(2*v, from, size/2);//Left child
+      build(2*v+1,from+size/2,size-size/2);//Right Child
+      
+      heap[v].sum=heap[2*v].sum+heap[2*v+1].sum;//Merging two children for Sum queries
+      heap[v].min=Math.min(heap[2*v].min,heap[2*v+1].min);//Merging two children for min queries
+    }
+  }
+  
+  /* Range sum queries
+   */
+  
+  public int rsq(int from,int to)
+  {
+    return rsq(1,from,to);
+  }
+  
+  private int rsq(int v,int from, int to)
+  {
+    Node n=heap[v];
+    
+    //If range update is performed containing this node one can infer  
+    if(n.pendingVal!=null && contains(n.from,n.to,from,to))
+      return (to-from+1)*n.pendingVal;
+    if(contains(from,to,n.from,n.to))
+      return heap[v].sum;
+    if(intersects(from,to,n.from,n.to)){
+      propagate(v);
+      int leftSum=rsq(2*v,from,to);
+      int rightSum=rsq(2*v+1,from,to);
+      
+      return leftSum+rightSum;
+    }
+    return 0;
+  }
+  public int rMinQ(int from, int to){
+    
+    return rMinQ(1,from,to);
+  }
+  
+  private int rMinQ(int v,int from, int to){
+    Node n=heap[v];
+    
+    if(n.pendingVal!=null&& contains(n.from,n.to,from,to))
+      return n.pendingVal;
+    if(contains(from,to,n.from,n.to))
+      return heap[v].min;
+    if(intersects(from,to,n.from,n.to)){
+      propagate(v);
+      int leftMin=rMinQ(2*v,from,to);
+      int rightMin=rMinQ(2*v+1,from,to);
+      return Math.min(leftMin,rightMin);
+    }
+    return Integer.MAX_VALUE;
+  }
+  
+  public void update(int from, int to,int value){
+    update(1,from,to,value);
+  }
+  
+  private void update(int v,int from,int to,int value)
+  {
+    Node n=heap[v];
+    if(contains(from,to,n.from,n.to)){
+      change(n,value);
+    }
+    if(n.size()==1) return;
+    if(intersects(from,to,n.from,n.to)){
+      propagate(v);
+      update(2*v,from,to,value);
+      update(2*v+1,from,to,value);
+      n.sum=heap[2*v].sum+heap[2*v+1].sum;
+      n.min=Math.min(heap[2*v].min,heap[2*v+1].min);
+    }
+  }
+  
+  private void propagate(int v)
+  {
+    Node n=heap[v];
+    
+    if(n.pendingVal!=null){
+      change(heap[2*v],n.pendingVal);
+      change(heap[2*v+1],n.pendingVal);
+      n.pendingVal=null;
+    }
+  }
+  private void change(Node n,int value)
+  {
+    n.pendingVal=value;
+    n.sum=n.size()*value;
+    n.min=value;
+    array[n.from]=value;
+  }
+  
+  private boolean contains(int from1, int to1,int from2, int to2)
+  {
+    return from2>=from1&&to2<=to1;
+  }
+  private boolean intersects(int from1,int to1,int from2,int to2)
+  {
+    return from1<=from2&&to1>=from2||from1>=from2&&from1<=to2;
+  }
+  
+  static class Node{
+    int sum;
+    int min;
+    Integer pendingVal=null;
+    int from;
+    int to;
+    
+    int size(){
+      return to-from+1;
+    }
+  }
+}
+    
+  
+      

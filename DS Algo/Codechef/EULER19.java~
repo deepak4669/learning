@@ -1,0 +1,65 @@
+import java.util.Scanner;
+public class EULER19
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n1=sundays(01,01,1901);
+    int n2=sundays(31,12,2000);
+    System.out.println(n2-n1);
+  }
+  public static int sundays(int day, int month, int year)
+  {
+    int totaldays=0;
+    boolean flag=false;
+    if(year%100==0)
+    {
+      if(year%4==0)
+        flag=true;
+    }
+    else if(year%4==0)
+      flag=true;
+      
+      
+    for(int i=1900;i<year;i++)
+    {
+      if(i%100==0)
+      {
+        if(i%4==0)
+          totaldays+=366;
+        else
+          totaldays+=365;
+      }
+      else if(i%4==0)
+      {
+        totaldays+=366;
+      }
+      else
+        totaldays+=365;
+    }
+    for(int i=1;i<month;i++)
+    {
+      if(i<8&&i%2!=0)
+        totaldays+=31;
+      else if(i==2)
+      {
+        if(flag)
+          totaldays+=29;
+        else
+          totaldays+=28;
+      }
+      else if(i<8&&i%2==0)
+        totaldays+=30;
+      else if(i%2==0)
+        totaldays+=31;
+      else
+        totaldays+=30;
+    }
+    return totaldays/7;
+  }
+        
+        
+      
+}
+
+    

@@ -1,0 +1,17 @@
+import java.util.Scanner;
+public class HUBULLU
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t>0)
+    {
+      long n=sc.nextLong();
+      int a=sc.nextInt();
+      if(a==1) System.out.println("Pagfloyd wins.");
+      else System.out.println("Airborne wins.");
+    }
+  }
+}
+      

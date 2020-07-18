@@ -1,0 +1,63 @@
+import java.util.*;
+import java.io.*;
+public class MATEX
+{
+  static int n;
+  public static void main(String[] args) throws IOException
+  {
+    Reader sc=new Reader();
+    n=sc.nextInt();
+    long[][] M=new long[n][n];
+    for(int i=0;i<n;i++)
+    {
+      for(int j=0;j<n;j++)
+      {
+        M[i][j]=sc.nextInt();
+      }
+    }
+    int i=sc.nextInt();
+    int j=sc.nextInt();
+    long N=sc.nextInt();
+    long[][] ans=mult(M,N);
+    System.out.println(ans[i][j]);
+  }
+  public static long[][] mult(long[][] A,long N)
+  {
+    long[][] result=new long[A[0].size][A[0].size];
+    for(int i=0;i<A[0].size;i++)
+    {
+      for(int j=0;j<A[0].size;j++)
+      {
+        if(i==j)
+          result[i][j]=1;
+      }
+    }
+              
+    while(N>0)
+    {
+      if(N%2==1)
+        result=multiplication(result,A);
+      A=multiplication(A,A);
+      N/=2;
+    }
+    return result;
+  }
+  public static long[][] multiplication(long[][] A, long[][] B)
+  {
+    long[][] C=new long[A[0].size][A[0].size];
+    for(int i=0;i<A[0].size;i++)
+    {
+      for(int j=0;j<A[0].size;j++)
+      {
+        for(int k=0;k<A[0].size;k++)
+        {
+          C[i][j]+=(A[i][k]*B[k][j])%1000000007;
+        }
+      }
+    }
+    return C;
+  }
+}
+                     
+    
+    

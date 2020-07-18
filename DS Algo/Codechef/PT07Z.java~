@@ -1,0 +1,55 @@
+import java.util.Scanner;
+public class PT07Z
+{
+  static Vector<Integer>[] adj;
+  static boolean[] marked;
+  static int[] pow;
+  static max;
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    adj=new Vector<Integer>[n];
+    for(int i=0;i<n-1;i++)
+    {
+      int v=sc.nextInt();
+      int w=sc.nextInt();
+      --v,--w;
+      adj[v].add(w);
+      adj[w].add(v);
+    }
+    maxvalue=0;
+    for(int i=0;i<v;i++)
+    {
+      marked=new boolean[n];
+      pow=new int[n];
+      pow[i]=0;
+      dfs(i,pow[i]);
+      if(max(pow)>maxvalue) maxvalue=max(pow);
+    }
+    System.out.println(maxvalue);
+  }
+  public static void dfs(int v,int prev)
+  {
+    marked[v]=true;
+    pow[v]=prev+1;
+    for(int w:adj[v])
+    {
+      if(!marked[w])
+      {
+        dfs(w,pow[v]);
+      }
+    }
+  }
+  public static int max(int[] a)
+  {
+    int max=0;
+    for(int i=0;i<a.length;i++)
+    {
+      if(max<a[i]) max=a[i];
+    }
+    return max;
+  }
+}
+    
+    

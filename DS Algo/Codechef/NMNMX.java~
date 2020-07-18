@@ -1,0 +1,60 @@
+import java.util.Scanner;
+public class NMNMX
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    while(t-->0)
+    {
+      int n=sc.nextInt();
+      int k=sc.nextInt();
+      int[] a=new int[n];
+      for(int i=0;i<n;i++)
+        a[i]=sc.nextInt();
+      int count=1;
+      int[] b=new int[n];
+      for(int i=0;i<(1<<n);i++)
+      {
+        int l=0;
+        b=new int[n];
+        if(count(i)==k)
+        {
+          for(int j=0;j<n;j++)
+          {
+            if(i&(1<<j))
+            {
+              b[l++]=a[j];
+              
+              
+              
+            }
+          }
+          count*=mul(b,l)%1000000007;
+        }
+      }
+      System.out.println(count);
+    }
+  }
+  public static int count(int a)
+  {
+    int count=0;
+      while(a>0)
+      {
+        count+=(n&1);
+        n>>=1;
+      }
+      return count;
+      
+    }
+  public static int mul(int[] a,int n)
+  {
+    Arrays.sort(a);
+      int ans=1;
+      for(int i=1;i<n-1;i++)
+        ans*=a[i]%1000000007;
+      return ans;
+  }
+}
+
+              

@@ -1,0 +1,237 @@
+import java.util.*;
+import java.io.*;
+
+public class Main1108C
+{
+  static PrintWriter out=new PrintWriter(System.out);
+  
+  
+  public static void main(String[] args) throws IOException
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    String s=sc.next();
+    char[] ch=s.toCharArray();
+    int x=0;
+    while(x<n)
+    {
+      if(ch[x]=='R')
+        r1++;
+      else if(ch[x]=='G')
+        g1++;
+      else if(ch[x]=='B')
+        b1++;
+      x+=3;
+    }
+    long cnt=0;
+    x=0;
+    if(r1>Max(g1,b1))
+    {
+      cnt+=(g1+b1);
+      while(x<n)
+      {
+        if(ch[x]=='G'||ch[x]=='B')
+          ch[x]='R';
+        x+=3;
+      }
+    }
+    else if(g1>Math.max(r1,b1))
+    {
+      cnt+=(r1+b1);
+      while(x<n)
+      {
+        if(ch[x]=='B'||ch=='R')
+          ch[x]='G';
+        x+=3;
+      }
+    }
+    else if(b1>=Math.max(r1,g1))
+    {
+      cnt+=(r1+g1);
+      while(x<n)
+      {
+        if(ch[x]=='R'||ch=='G')
+          ch[x]='B';
+        x+=3;
+      }
+    }
+    x=1;
+    r1=0;
+    g1=0;
+    b1=0;
+    while(x<n)
+    {
+      if(ch[x]=='R')
+        r1++;
+      else if(ch[x]=='G')
+        g1++;
+      else if(ch[x]=='B')
+        b1++;
+      x+=3;
+    }
+    long cnt=0;
+    x=1;
+    if(r1>Max(g1,b1))
+    {
+      cnt+=(g1+b1);
+      while(x<n)
+      {
+        if(ch[x]=='G'||ch[x]=='B')
+          ch[x]='R';
+        x+=3;
+      }
+    }
+    else if(g1>Math.max(r1,b1))
+    {
+      cnt+=(r1+b1);
+      while(x<n)
+      {
+        if(ch[x]=='B'||ch=='R')
+          ch[x]='G';
+        x+=3;
+      }
+    }
+    else if(b1>=Math.max(r1,g1))
+    {
+      cnt+=(r1+g1);
+      while(x<n)
+      {
+        if(ch[x]=='R'||ch=='G')
+          ch[x]='B';
+        x+=3;
+      }
+    }
+    x=2;
+    r1=0;
+    g1=0;
+    b1=0;
+    while(x<n)
+    {
+      if(ch[x]=='R')
+        r1++;
+      else if(ch[x]=='G')
+        g1++;
+      else if(ch[x]=='B')
+        b1++;
+      x+=3;
+    }
+    long cnt=0;
+    x=2;
+    if(r1>Max(g1,b1))
+    {
+      cnt+=(g1+b1);
+      while(x<n)
+      {
+        if(ch[x]=='G'||ch[x]=='B')
+          ch[x]='R';
+        x+=3;
+      }
+    }
+    else if(g1>Math.max(r1,b1))
+    {
+      cnt+=(r1+b1);
+      while(x<n)
+      {
+        if(ch[x]=='B'||ch=='R')
+          ch[x]='G';
+        x+=3;
+      }
+    }
+    else if(b1>=Math.max(r1,g1))
+    {
+      cnt+=(r1+g1);
+      while(x<n)
+      {
+        if(ch[x]=='R'||ch=='G')
+          ch[x]='B';
+        x+=3;
+      }
+    }
+    out.println(cnt);
+    out.println(ch);
+    out.flush();
+    
+    
+    
+    
+    
+  }
+  static class Scanner
+  {
+    BufferedReader br;
+    StringTokenizer tk=new StringTokenizer("");
+    public Scanner(InputStream is) 
+        {
+      br=new BufferedReader(new InputStreamReader(is));
+    }
+        public int nextInt() throws IOException
+        {
+          if(tk.hasMoreTokens())
+                return Integer.parseInt(tk.nextToken());
+          tk=new StringTokenizer(br.readLine());
+          return nextInt();
+        }
+        public long nextLong() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return Long.parseLong(tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return nextLong();
+        }
+        public String next() throws IOException
+        {
+          if(tk.hasMoreTokens())
+            return (tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return next();
+        }
+        public String nextLine() throws IOException
+        {
+          tk=new StringTokenizer("");
+          return br.readLine();
+        }
+        public double nextDouble() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return Double.parseDouble(tk.nextToken());
+            tk=new StringTokenizer(br.readLine());
+            return nextDouble();
+        }
+        public char nextChar() throws IOException
+        {
+            if(tk.hasMoreTokens())
+              return (tk.nextToken().charAt(0));
+            tk=new StringTokenizer(br.readLine());
+            return nextChar();
+        }
+        public int[] nextIntArray(int n) throws IOException
+        {
+            int a[]=new int[n];
+            for(int i=0;i<n;i++)
+              a[i]=nextInt();
+            return a;
+        }
+        public long[] nextLongArray(int n) throws IOException
+        {
+          long a[]=new long[n];
+            for(int i=0;i<n;i++)
+              a[i]=nextLong();
+            return a;
+        }
+        public int[] nextIntArrayOneBased(int n) throws IOException
+        {
+          int a[]=new int[n+1];
+            for(int i=1;i<=n;i++)
+              a[i]=nextInt();
+            return a;
+        }
+        public long[] nextLongArrayOneBased(int n) throws IOException
+        {
+          long a[]=new long[n+1];
+          for(int i=1;i<=n;i++)
+                a[i]=nextLong();
+          return a;
+        }
+  }
+}
+

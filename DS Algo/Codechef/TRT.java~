@@ -1,0 +1,33 @@
+import java.util.Scanner;
+public class TRT
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int[] a=new int[n];
+    for(int i=0;i<n;i++)
+      a[i]=sc.nextInt();
+    int[][] A=new int[n][n];
+    for(int i=0;i<n;i++)
+    {
+      A[i][i]=0;
+    }
+    for(int i=n-2;i>=0;i--)
+    {
+      for(int j=i+1;j<n;j++)
+      {
+        A[i][j]=max(a[i]*(n-j+i)+A[i+1][j],a[j]*(n-j+i)+A[i][j-1]);
+        
+      }
+    }
+    System.out.println(A[0][n-1]);
+  }
+  public static int max(int x,int y)
+  {
+    if(x>y) return x;
+    else return y;
+  }
+}
+        
+        

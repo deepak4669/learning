@@ -1,0 +1,14 @@
+import java.util.Scanner;
+public class EULER1
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int N=sc.nextInt();
+    int n=(N-3)/3+1;
+    int M=(N-5)/5+1;
+    int k=(N-15)/15+1;
+    long sum=(n/2)*(3*n+3)+(M/2)(5*M+5)-(k/2)*(15+15*k);
+    System.out.println(sum);
+  }
+}

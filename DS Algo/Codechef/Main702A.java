@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class Main702A
+{
+  public static void main(String[] args){
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int[] a=new int[n];
+    for(int i=0;i<n;i++)
+    {
+      a[i]=sc.nextInt();
+    }
+    int max=0;
+    int curr=1;
+    int prev=a[0];
+    for(int i=1;i<n;i++)
+    {
+      if(a[i]>prev)
+        curr++;
+      else
+      {
+        if(curr>max) max=curr;
+        curr=1;
+      }
+      prev=a[i];
+    }
+    if(curr>max) max=curr;
+    System.out.println(max);
+  }
+}
+      

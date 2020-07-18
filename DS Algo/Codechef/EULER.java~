@@ -1,0 +1,41 @@
+import java.util.Scanner;
+public class EULER
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int max=0;
+    for(int i=2;i<n;i++)
+    {
+      if(n%2==0)
+        continue;
+      else
+      {
+        int count=0;
+        int x=10;
+        while(true)
+        {
+          int v=x%i;
+          if(v!=x)
+          {
+            if(v==1) break;
+            x=v;
+            count++;
+            
+          }
+          x*=10;
+        }
+        if(count>max) max=count;
+      }
+    }
+    System.out.println(max);
+  }
+}
+
+    
+          
+          
+          
+          
+        

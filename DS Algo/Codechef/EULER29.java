@@ -1,0 +1,25 @@
+import java.util.Scanner;
+import java.util.Vector;
+import java.math.BigInteger;
+public class EULER29
+{
+  static Vector<BigInteger> a=new Vector<BigInteger>();
+  
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    
+    for(int i=2;i<=100;i++)
+    {
+      for(int j=2;j<=100;j++)
+      {
+        BigInteger f=BigInteger.valueOf(i).pow(j);
+        if(!a.contains(f))
+          a.add(f);
+      }
+    }
+    System.out.println(a.size());
+  }
+}
+    
+    

@@ -1,0 +1,179 @@
+import java.util.*;
+import java.io.*;
+
+public class GSS4{
+  
+  static Node[] array;
+  
+  public class SegmentTree
+  {
+    public int[] heap;
+    
+    public SegmentTree(int[] array)
+    {
+      int size=getSize(array.length);
+      heap=new int[size];
+      build(array,1,0,array.length-1);
+    }
+    
+    public void build(int[] a, int v,int lo, int hi)
+    {
+      heap[v]=new Node();
+      heap[v].from=lo;
+      heap[v].to=hi;
+      if(lo==hi)
+      {
+        heap[v].assignValue(a[lo]);
+        return;
+      }
+      int left=2*v;
+      int right=left+1;
+      int mid=(lo+hi)/2;
+      build(a,left,lo,mid);
+      build(a,right,mid+1,hi);
+      heap[v].merge(heap[left],heap[right]);
+    }
+    
+    public int query(int from, int to)
+    {
+      Node result=query(1,0,array.length-1,from-1,to-1);
+      return result.getValue();
+    }
+    
+    private Node query(int v,int lo, int hi,int from, int to)
+    {
+      if(lo==from&&hi==to)
+      {
+        return heap[v];
+      }
+      int mid=(lo+hi)/2;
+      if(from>mid)
+        return query(2*v+1,mid+1,hi,from,to);
+      if(to<=mid)
+        return query(2*v,lo,mid,from,to);
+      
+      Node leftValue=query(2*v,lo,mid,from,mid);
+      Node rightValue=query(2*v+1,mid+1,hi,mid+1,to);
+      Node result=new Node();
+      result.merge(leftValue,rightValue);
+      return result;
+    }
+    
+    private class Node{
+      
+      int from,to;
+      long total;
+      boolean pendingVal;
+      
+      public Node(){
+        total=0;
+        pendingVal=false;
+      }      
+      public void assignValue(long value)
+      {
+        total=value;
+      }      
+      public void merge(Node left, Node right)
+      {
+        total=left.total+right.total;
+      }
+      public long getValue()
+      {
+        return total;
+      }
+      
+      public boolean isPropagationRequired(){
+        return total>to-from+1;
+      }
+      public void applyPendingUpdate(){
+        total=(long)Math.sqrt(total);
+        pendingVal=false;
+      }
+      public void addUpdate(){
+        pendingVal=true;
+      }
+      public boolean getPendingUpdate(){
+        return true;
+      }
+      
+      public void clearPendingUpdate(){
+        pendingVal=false;
+      }
+    }
+    public void update(int v,int start,int end)
+    {
+      if(nodes[v].from==start&&nodes[v].to==end){
+        lazyUpdate(v);
+      }
+      
+      int mid=(heap[v].from+heap[v].to)>>1;
+      int left=c<<2;
+      right=left+1;
+      
+      if(start>mid)
+      {
+        update(right,start,end);
+      }
+      else if(end<=mid)
+      {
+        update(left,start,end);
+      }
+      else {
+        update(left,start,mid);
+        update(right,mid+1,end);
+      }
+      heap[v].merge(heap[left],heap[right]);
+    }
+    
+    public void lazyUpdate(int v)
+    {
+      heap[v].addUpdate();
+      if(!heap[v].isPropagationRequired())
+        return;
+      if(heap[v].from==heap[v].to)
+      {
+        heap[v].applyPendingUpdate();
+      }
+      heap[v].clearPendingUpdate();
+      int mid=(heap[v].from+heap[v].to)>>2;
+      left=v<<1;
+      right=left+1;
+      lazyUpdate(left);
+      lazyUpdate(right);
+      heap[v].merge(heap[left],heap[right]);
+    }
+  }
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    while(sc.hasNextInt())
+    {
+      int n=sc.nextInt();
+      array=new int[n];
+      for(int i=0;i<n;i++)
+        array[i]=sc.nextInt();
+      int m=sc.nextInt();
+      SegmentTree tree=new Node(array);
+      while(m>0)
+      {
+        int i=sc.nextInt();
+        int x=sc.nextInt();
+        int y=sc.nextInt();
+        if(i==0)
+        {
+          tree.update(1,x-1,y-1);
+        }
+        else
+        {
+          System.out.println(tree.query(x,y));
+        }
+      }
+      m--;
+    }
+  }
+}
+          
+    
+      
+    
+      

@@ -1,0 +1,42 @@
+import java.util.Scanner;
+public class Main239A
+{
+  public static void main(String[] args)
+  {
+    Scanner sc=new Scanner(System.in);
+    int y=sc.nextInt();
+    int k=sc.nextInt();
+    int n=sc.nextInt();
+    int x_up=n-k;
+    if(x_up==0) System.out.println(-1);
+    else
+    {
+      if(y%k==0)
+      {
+        int t=1;
+        int cnt=0;
+        while(y+t*k<=n)
+        {
+          cnt++;
+          System.out.println(t*k);
+          t++;
+        }
+        if(cnt==0) System.out.println(-1);
+      }
+      else
+      {
+        int l=y%k;
+        int t=0;
+        int cnt=0;
+        while((l+t*k+y)<=n)
+        {
+          cnt++;
+          System.out.println(l+t*k);
+        }
+        if(cnt==0)
+          System.out.println(-1);
+      }
+    }
+  }
+}
+      
